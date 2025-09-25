@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useZStore } from "@/providers/zustand-provider";
 
 export default function Footer() {
   return (
@@ -27,34 +30,61 @@ export default function Footer() {
 }
 
 const TimeLine = () => {
+  const selectedService = useZStore((state) => state.selectedService);
+  const step = useZStore((state) => state.step);
+  const setStep = useZStore((state) => state.setStep);
+  const active = "bg-[#ffb6c0]";
+  const inactive = "transparent";
+
   return (
     <article className="w-full flex justify-around items-center">
       <button
-        className="bg-[#ffb6c0] p-2  rounded text-xs text-[#444]/50 tracking-wider font-medium"
+        className={`p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${step !== 1 ? active : inactive}`}
         type="button"
+        onClick={() => {
+          if (step !== 1) {
+            setStep(step - 1);
+          }
+        }}
+        disabled={step === 1}
       >
-        ATRAS
+        {step === 1 ? <span>ATRAS</span> : <Link href="/">ATRAS</Link>}
       </button>
 
       <ul className="flex gap-4">
-        <li className="bg-[#ffdbdf] p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow">
+        <li
+          className={`p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${step === 1 ? active : inactive}`}
+        >
           1
         </li>
-        <li className="bg-[#ffb6c0] p-2 rounded-full text-xs text-[#444] tracking-wider font-medium">
+        <li
+          className={`p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${step === 2 ? active : inactive}`}
+        >
           2
         </li>
-        <li className="bg-[#ffb6c0] p-2 rounded-full text-xs text-[#444] tracking-wider font-medium">
+        <li
+          className={`p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${step === 3 ? active : inactive}`}
+        >
           3
         </li>
       </ul>
 
-      <Link
-        href="/calendar"
-        className="bg-[#ffdbdf] p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow"
+      <button
+        className={`p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${selectedService !== "0" ? active : inactive}`}
         type="button"
+        onClick={() => {
+          if (step !== 3) {
+            setStep(step + 1);
+          }
+        }}
+        disabled={selectedService === "0"}
       >
-        SIGUIENTE
-      </Link>
+        {selectedService === "0" ? (
+          <span>SIGUIENTE</span>
+        ) : (
+          <Link href="/calendar">SIGUIENTE</Link>
+        )}
+      </button>
     </article>
   );
 };

@@ -24,7 +24,7 @@ export default function ServicesAccordion() {
 }
 
 const AccordionItemElement = ({ service }: { service: ServiceType }) => {
-  const selectedService = useServicesStore((state) => state.selectedService);
+  const selectedService = useZStore((state) => state.selectedService);
   return (
     <AccordionItem
       value={service.id}
@@ -44,14 +44,12 @@ const AccordionItemElement = ({ service }: { service: ServiceType }) => {
   );
 };
 
-import { useServicesStore } from "@/providers/services-store-provider";
+import { useZStore } from "@/providers/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 
 const ServiceCard = ({ service }: { service: ServiceType }) => {
-  const selectedService = useServicesStore((state) => state.selectedService);
-  const setSelectedService = useServicesStore(
-    (state) => state.setSelectedService,
-  );
+  const selectedService = useZStore((state) => state.selectedService);
+  const setSelectedService = useZStore((state) => state.setSelectedService);
   const handleSelectService = () => {
     if (selectedService === service.id) {
       setSelectedService("0");

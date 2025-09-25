@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ServicesStoreProvider } from "@/providers/services-store-provider";
+import { ZustandProvider } from "@/providers/zustand-provider";
 import Footer from "../_components/Footer";
 import Aside from "../_components/Aside";
 
@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen flex flex-col items-center justify-center bg-slate-800`}
         suppressHydrationWarning
       >
-        <ServicesStoreProvider>
+        <ZustandProvider>
           <main className="w-screen flex-1 flex flex-col items-center justify-center">
             <div className="w-1/2 h-[600px] flex flex-col justify-center items-center bg-gradient-to-b from-pink-100 to-pink-200">
               <div className="w-full h-full flex">
@@ -46,7 +46,7 @@ export default function RootLayout({
           <footer className="w-screen px-10 h-10 flex items-center justify-end">
             k@toDev
           </footer>
-        </ServicesStoreProvider>
+        </ZustandProvider>
       </body>
     </html>
   );
