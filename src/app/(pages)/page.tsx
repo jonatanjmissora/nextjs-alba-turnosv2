@@ -1,12 +1,20 @@
-import ServicesPage from "../_components/01-services/main"
+// export default function Home() {
+//   return (
+//     <div className="min-h-screen w-screen flex flex-col items-center justify-center bg-slate-950">
+//       <ServicesPage />
 
-export default function Home() {
+import ServicesAccordion from "../_components/01-services/accordion";
+
+//     </div>
+//   )
+// }
+export default function Services() {
   return (
-    <div className="min-h-screen w-screen flex flex-col items-center justify-center bg-slate-950">
-      <ServicesPage />
-      <footer className="w-screen px-10 h-10 flex items-center justify-end">
-        k@toDev
-      </footer>
-    </div>
-  )
+    <section className="w-2/3 h-[500px] mx-2">
+      <h2 className="text-xl text-[#444] p-8 py-4 border-b border-[#444]/20">
+        Selecciona un servicio
+      </h2>
+      <ServicesAccordion />
+    </section>
+  );
 }

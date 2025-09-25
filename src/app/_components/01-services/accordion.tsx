@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -5,67 +7,15 @@ import {
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
 
-const services = [
-  {
-    id: "1",
-    title: "Maderoterapia",
-    subtitle: "Cuerpo entero",
-    price: "100.000",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. ",
-  },
-  {
-    id: "2",
-    title: "Limpieza Facial",
-    subtitle: "Simple",
-    price: "100.000",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-  },
-  {
-    id: "3",
-    title: "Limpieza Corporal",
-    subtitle: "Simple",
-    price: "100.000",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-  },
-  {
-    id: "4",
-    title: "Depilación Láser",
-    subtitle: "Cuerpo entero",
-    price: "100.000",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-  },
-  {
-    id: "5",
-    title: "Hifu",
-    subtitle: "Simple",
-    price: "100.000",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-  },
-];
+import { services, type ServiceType } from "@/lib/services-mock";
 
-export default function ServicesAccordion({
-  selectedService,
-  setSelectedService,
-}: {
-  selectedService: string;
-  setSelectedService: (service: string) => void;
-}) {
+export default function ServicesAccordion() {
   return (
     <div className="w-full p-6 flex justify-center items-center h-[470px] services-card-container">
       <div className="w-full max-w-lg">
         <Accordion type="single" collapsible className="w-full">
           {services.map((service) => (
-            <AccordionItemElement
-              key={service.id}
-              service={service}
-              selectedService={selectedService}
-              setSelectedService={setSelectedService}
-            />
+            <AccordionItemElement key={service.id} service={service} />
           ))}
         </Accordion>
       </div>
@@ -73,43 +23,35 @@ export default function ServicesAccordion({
   );
 }
 
-const AccordionItemElement = ({
-  service,
-  selectedService,
-  setSelectedService,
-}: {
-  service: any;
-  selectedService: string;
-  setSelectedService: (service: string) => void;
-}) => {
+const AccordionItemElement = ({ service }: { service: ServiceType }) => {
+  const selectedService = useServicesStore((state) => state.selectedService);
   return (
     <AccordionItem
       value={service.id}
       className="w-full flex flex-col justify-center items-center"
     >
-      <AccordionTrigger className="font-semibold tracking-wider py-4 text-[#444] border-b border-[#444]/20 w-3/4 mx-auto">
-        {service.title}
+      <AccordionTrigger className="font-semibold tracking-wider py-4 text-[#444] border-b border-[#444]/20 w-3/4 mx-auto relative">
+        <span>{service.title}</span>
+        <IconCheck
+          stroke={2}
+          className={`absolute top-1/2 transform -translate-y-1/2 right-2 ${selectedService === service.id ? "block" : "hidden"}`}
+        />
       </AccordionTrigger>
       <AccordionContent className="flex flex-col gap-4 text-balance">
-        <ServiceCard
-          service={service}
-          selectedService={selectedService}
-          setSelectedService={setSelectedService}
-        />
+        <ServiceCard service={service} />
       </AccordionContent>
     </AccordionItem>
   );
 };
 
-const ServiceCard = ({
-  service,
-  selectedService,
-  setSelectedService,
-}: {
-  service: any;
-  selectedService: string;
-  setSelectedService: (service: string) => void;
-}) => {
+import { useServicesStore } from "@/providers/services-store-provider";
+import { IconCheck } from "@tabler/icons-react";
+
+const ServiceCard = ({ service }: { service: ServiceType }) => {
+  const selectedService = useServicesStore((state) => state.selectedService);
+  const setSelectedService = useServicesStore(
+    (state) => state.setSelectedService,
+  );
   const handleSelectService = () => {
     if (selectedService === service.id) {
       setSelectedService("0");
