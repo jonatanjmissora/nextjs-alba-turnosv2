@@ -15,12 +15,12 @@ import {
 
 export default function ServicesAccordion() {
     return (
-        <div className="w-full flex justify-center items-center">
-            <div className="w-full">
+        <div className="w-full">
+            <div className="w-full flex-1 h-[445px] flex justify-center items-center services-card-container">
                 <Accordion
                     type="single"
                     collapsible
-                    className="w-full h-[400px] services-card-container p-4"
+                    className="w-full py-5 h-full"
                 >
                     {services.map((service) => (
                         <AccordionItemElement
@@ -39,9 +39,9 @@ const AccordionItemElement = ({ service }: { service: ServiceType }) => {
     return (
         <AccordionItem
             value={service.id}
-            className="w-full flex flex-col justify-center items-center"
+            className="w-full flex flex-col justify-center items-center border-b border-[#444]/20"
         >
-            <AccordionTrigger className="font-semibold tracking-wider py-4 text-[#444] border-b border-[#444]/20 w-full relative">
+            <AccordionTrigger className="font-semibold tracking-wider py-4 text-[#444]  w-full relative">
                 <span>{service.title}</span>
                 <IconCheck
                     stroke={3}
@@ -50,7 +50,7 @@ const AccordionItemElement = ({ service }: { service: ServiceType }) => {
                     className={`absolute top-1/2 transform -translate-y-1/2 right-2 ${selectedService && selectedService[0] === service.id ? "block" : "hidden"}`}
                 />
             </AccordionTrigger>
-            <AccordionContent className="flex flex-col gap-4 text-balance">
+            <AccordionContent className="flex flex-col gap-4 text-balance p-3">
                 {service.categories.map((category) => (
                     <ServiceCard key={category.id} category={category} />
                 ))}
@@ -82,7 +82,7 @@ const ServiceCard = ({ category }: { category: CategoryType }) => {
         >
             <div className="text-[#333] w-full flex justify-between items-center pb-2">
                 <span className="font-semibold">{category.subtitle}</span>
-                <span className="font-semibold text-lg text-[#444]">
+                <span className="font-semibold text-lg text-[#444] min-w-[10ch]">
                     $ {category.price}
                 </span>
             </div>
