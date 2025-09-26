@@ -17,7 +17,7 @@ export default function TimeLine() {
 
     const handleReset = () => {
         setSelectedService(undefined);
-        setSelectedDate(new Date());
+        setSelectedDate(undefined);
         setSelectedTime(undefined);
         setName(undefined);
         setPhone(undefined);

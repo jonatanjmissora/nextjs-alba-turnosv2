@@ -26,10 +26,12 @@ export default function CheckoutPage() {
                     <span>{serviceTitle}</span>
 
                     <span className="text-[#444]">fecha :</span>
-                    <span>{selectedDate.toLocaleDateString()}</span>
+                    <span>
+                        {selectedDate ? selectedDate?.toLocaleDateString() : ""}
+                    </span>
 
                     <span className="text-[#444]">hora :</span>
-                    <span>{selectedTime} hs</span>
+                    <span>{selectedTime ? selectedTime : ""}</span>
                 </div>
             </div>
 

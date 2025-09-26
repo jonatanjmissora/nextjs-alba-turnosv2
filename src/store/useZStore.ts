@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export type State = {
     selectedService: string | undefined;
-    selectedDate: Date;
+    selectedDate: Date | undefined;
     selectedTime: string | undefined;
     name: string | undefined;
     phone: string | undefined;
@@ -11,7 +11,7 @@ export type State = {
 
 export type Actions = {
     setSelectedService: (service: string | undefined) => void;
-    setSelectedDate: (date: Date) => void;
+    setSelectedDate: (date: Date | undefined) => void;
     setSelectedTime: (time: string | undefined) => void;
     setName: (name: string | undefined) => void;
     setPhone: (phone: string | undefined) => void;
@@ -22,7 +22,7 @@ export type StoreType = State & Actions;
 
 const defaultInitState: State = {
     selectedService: undefined,
-    selectedDate: new Date(),
+    selectedDate: undefined,
     selectedTime: undefined,
     name: undefined,
     phone: undefined,

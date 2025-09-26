@@ -82,10 +82,12 @@ export default function DataPage() {
                         <span>{serviceTitle}</span>
 
                         <span className="text-[#444]">fecha :</span>
-                        <span>{selectedDate.toLocaleDateString()}</span>
+                        {selectedDate && (
+                            <span>{selectedDate.toLocaleDateString()}</span>
+                        )}
 
                         <span className="text-[#444]">hora :</span>
-                        <span>{selectedTime} hs</span>
+                        {selectedTime && <span>{selectedTime} hs</span>}
                     </div>
                     {name && name.length > 3 && (
                         <IconCheck

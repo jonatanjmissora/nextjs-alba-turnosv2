@@ -45,7 +45,7 @@ const MiniCalendarDate = () => {
                         setSelectedDate(date);
                         setSelectedTime(undefined);
                     }}
-                    value={selectedDate || new Date()}
+                    value={selectedDate}
                     className="bg-pink-100 flex justify-center items-center border border-[#444]/20 shadow w-full "
                 >
                     <MiniCalendarNavigation direction="prev" />
