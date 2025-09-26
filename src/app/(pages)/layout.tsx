@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ZustandProvider } from "@/providers/zustand-provider";
-import Footer from "../_components/Footer";
 import Aside from "../_components/Aside";
+import TimeLine from "../_components/Timeline";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,18 +28,18 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen flex flex-col items-center justify-center bg-slate-800`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-screen flex flex-col items-center justify-center bg-pink-100`}
         suppressHydrationWarning
       >
         <ZustandProvider>
           <main className="w-screen flex-1 flex flex-col items-center justify-center">
-            <div className="w-1/2 h-[600px] flex flex-col justify-center items-center bg-gradient-to-b from-pink-100 to-pink-200">
+            <div className="w-2/3 h-[600px] flex flex-col justify-center items-center bg-gradient-to-b from-pink-100 via-[#FADBE0] to-[#ffc0cb] shadow-[6px_6px_10px_3px_rgba(0,0,0,0.15)] overflow-hidden">
               <div className="w-full h-full flex">
                 <Aside />
-                {children}
-              </div>
-              <div className="w-full h-16 flex justify-center items-center gap-4 bg-[#ff9bac]">
-                <Footer />
+                <div className="w-2/3 flex flex-col">
+                  {children}
+                  <TimeLine />
+                </div>
               </div>
             </div>
           </main>

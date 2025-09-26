@@ -208,7 +208,7 @@ export const MiniCalendarDay = ({
       className={cn(
         "h-auto min-w-[3rem] flex-col gap-0 p-2 text-xs",
         isTodayDate && !isSelected && "bg-accent",
-        isSelected && "bg-[#ff9bac]",
+        isSelected && "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]",
         className,
       )}
       onClick={() => onDateSelect(date)}

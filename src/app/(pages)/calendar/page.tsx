@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+
 import {
   MiniCalendar,
   MiniCalendarDay,
@@ -12,9 +12,9 @@ import { useZStore } from "@/providers/zustand-provider";
 
 export default function CalendarPage() {
   return (
-    <section className="w-2/3 h-[500px] mx-2">
+    <section className="flex-1 w-full h-[500px] p-2 pt-10">
       <h2 className="text-xl text-[#444] p-8 py-4 border-b border-[#444]/20">
-        Selecciona turno
+        Selecciona fecha y hora
       </h2>
       <MiniCalendarDate />
     </section>
@@ -24,23 +24,29 @@ export default function CalendarPage() {
 const MiniCalendarDate = () => {
   const selectedDate = useZStore((state) => state.selectedDate);
   const setSelectedDate = useZStore((state) => state.setSelectedDate);
+  const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
   return (
-    <article className="flex flex-col gap-8 items-center mt-8">
+    <article className="flex-1 flex flex-col gap-8 items-center mt-8">
       <div className="flex flex-col gap-3 justify-center items-center w-2/3">
         <div className="w-full relative">
           <h3 className="text-xs text-[#444] ">Selecciona fecha</h3>
           {selectedDate && (
             <IconCheck
-              stroke={2}
+              stroke={3}
+              size={50}
+              color="#ff8000"
               className={`absolute top-1/2 transform -translate-y-1/2 right-2 block`}
             />
           )}
         </div>
         <MiniCalendar
-          onValueChange={(date) => setSelectedDate(date || new Date())}
-          value={selectedDate}
-          className="bg-pink-300/20 flex justify-center items-center border border-[#444]/20 shadow w-full "
+          onValueChange={(date = new Date()) => {
+            setSelectedDate(date);
+            setSelectedTime(undefined);
+          }}
+          value={selectedDate || new Date()}
+          className="bg-pink-100 flex justify-center items-center border border-[#444]/20 shadow w-full "
         >
           <MiniCalendarNavigation direction="prev" />
           <MiniCalendarDays>
@@ -60,21 +66,15 @@ const MiniCalendarDate = () => {
         //     day: "numeric",
         //   })}
         // </p>
-        <TimeContainer selectedDate={selectedDate} />
+        <TimeContainer />
       )}
     </article>
   );
 };
 
-const TimeContainer = ({ selectedDate }: { selectedDate: Date }) => {
+const TimeContainer = () => {
   const selectedTime = useZStore((state) => state.selectedTime);
   const setSelectedTime = useZStore((state) => state.setSelectedTime);
-
-  useEffect(() => {
-    if (selectedDate) {
-      setSelectedTime(undefined);
-    }
-  }, [selectedDate, setSelectedTime]);
 
   return (
     <div className="flex flex-col gap-3 justify-center items-center w-2/3">
@@ -82,7 +82,9 @@ const TimeContainer = ({ selectedDate }: { selectedDate: Date }) => {
         <h3 className="text-xs text-[#444] ">Selecciona hora</h3>
         {selectedTime && (
           <IconCheck
-            stroke={2}
+            stroke={3}
+            size={50}
+            color="#ff8000"
             className={`absolute top-1/2 transform -translate-y-1/2 right-2 block`}
           />
         )}
@@ -92,7 +94,7 @@ const TimeContainer = ({ selectedDate }: { selectedDate: Date }) => {
           <button
             key={time.id}
             type="button"
-            className={`p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/20 shadow ${selectedTime !== time.time ? "bg-pink-300/20" : "bg-[#ff9bac]"}`}
+            className={`p-3 px-6 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/20 ${selectedTime !== time.time ? "bg-pink-300/20" : "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]"}`}
             onClick={() => setSelectedTime(time.time)}
           >
             {time.time}

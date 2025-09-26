@@ -11,7 +11,7 @@ import { services, type ServiceType } from "@/lib/services-mock";
 
 export default function ServicesAccordion() {
   return (
-    <div className="w-full p-6 flex justify-center items-center h-[470px] services-card-container">
+    <div className="w-full p-6 flex justify-center items-center h-[430px] services-card-container">
       <div className="w-full max-w-lg">
         <Accordion type="single" collapsible className="w-full">
           {services.map((service) => (
@@ -33,7 +33,9 @@ const AccordionItemElement = ({ service }: { service: ServiceType }) => {
       <AccordionTrigger className="font-semibold tracking-wider py-4 text-[#444] border-b border-[#444]/20 w-3/4 mx-auto relative">
         <span>{service.title}</span>
         <IconCheck
-          stroke={2}
+          stroke={3}
+          size={50}
+          color="#ff8000"
           className={`absolute top-1/2 transform -translate-y-1/2 right-2 ${selectedService === service.id ? "block" : "hidden"}`}
         />
       </AccordionTrigger>
