@@ -11,8 +11,6 @@ export default function DataPage() {
     const selectedService = useZStore((state) => state.selectedService);
     const selectedDate = useZStore((state) => state.selectedDate);
     const selectedTime = useZStore((state) => state.selectedTime);
-    const name = useZStore((state) => state.name);
-    const phone = useZStore((state) => state.phone);
 
     const { serviceTitle, servicePrice } = getServiceData(
         selectedService,
@@ -21,43 +19,24 @@ export default function DataPage() {
 
     return (
         <ContentLayout title="Completar datos personales">
-            <div className="flex-1 relative">
-                <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center pt-6">
+            <div className="flex-1">
+                <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center pt-12">
                     <NameElement />
 
                     <PhoneElement />
 
                     <span className="text-[#444]">servicio :</span>
-                    <span>{serviceTitle}</span>
+                    <span>{serviceTitle || ""}</span>
 
                     <span className="text-[#444]">fecha :</span>
-                    {selectedDate && (
-                        <span>{selectedDate.toLocaleDateString()}</span>
-                    )}
+                    <span>{selectedDate?.toLocaleDateString() || ""}</span>
 
                     <span className="text-[#444]">hora :</span>
-                    {selectedTime && <span>{selectedTime} hs</span>}
+                    <span>{selectedTime || ""} hs</span>
 
                     <span className="text-[#444]">valor :</span>
-                    <span>$ {servicePrice}</span>
+                    <span>$ {servicePrice || ""}</span>
                 </div>
-
-                {name && name.length > 3 && (
-                    <IconCheck
-                        stroke={3}
-                        size={40}
-                        color="#ff8000"
-                        className={`absolute -top-2 -right-10 block`}
-                    />
-                )}
-                {phone && phone.length > 8 && (
-                    <IconCheck
-                        stroke={3}
-                        size={40}
-                        color="#ff8000"
-                        className={`absolute top-9 -right-10 block`}
-                    />
-                )}
             </div>
 
             <div className="flex flex-col gap-2 text-xs text-[#444]/80 justify-center items-center w-full text-center">
@@ -104,13 +83,23 @@ const NameElement = () => {
             <label className="text-[#444]" htmlFor="name">
                 nombre :
             </label>
-            <input
-                name="name"
-                className="p-2 py-1 h-8 bg-pink-50 border border-[#444]/20"
-                type="text"
-                value={nombre}
-                onChange={handleChangeName}
-            />
+            <div className="relative">
+                <input
+                    name="name"
+                    className="p-2 py-1 h-8 bg-pink-50 border border-[#444]/20"
+                    type="text"
+                    value={nombre}
+                    onChange={handleChangeName}
+                />
+                {name && name.length > 3 && (
+                    <IconCheck
+                        stroke={3}
+                        size={40}
+                        color="#ff8000"
+                        className={`absolute -top-2 -right-10 block`}
+                    />
+                )}
+            </div>
         </>
     );
 };
@@ -141,13 +130,23 @@ const PhoneElement = () => {
             <label className="text-[#444]" htmlFor="phone">
                 celular :
             </label>
-            <input
-                name="phone"
-                className="p-2 py-1 h-8 bg-pink-50 border border-[#444]/20"
-                type="number"
-                value={celular}
-                onChange={handleChangePhone}
-            />
+            <div className="relative">
+                <input
+                    name="phone"
+                    className="p-2 py-1 h-8 bg-pink-50 border border-[#444]/20"
+                    type="number"
+                    value={celular}
+                    onChange={handleChangePhone}
+                />
+                {phone && phone.length > 8 && (
+                    <IconCheck
+                        stroke={3}
+                        size={40}
+                        color="#ff8000"
+                        className={`absolute -top-2 -right-10 block`}
+                    />
+                )}
+            </div>
         </>
     );
 };

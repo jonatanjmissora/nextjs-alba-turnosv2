@@ -15,9 +15,13 @@ import {
 
 export default function ServicesAccordion() {
     return (
-        <div className="w-full flex justify-center items-center h-[435px] services-card-container">
+        <div className="w-full flex justify-center items-center">
             <div className="w-full">
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full h-[400px] services-card-container p-4"
+                >
                     {services.map((service) => (
                         <AccordionItemElement
                             key={service.id}
