@@ -9,15 +9,13 @@ import {
 import { IconCheck } from "@tabler/icons-react";
 import { timeRange } from "@/lib/time";
 import { useZStore } from "@/providers/zustand-provider";
+import ContentLayout from "@/app/_components/ContentLayout";
 
 export default function CalendarPage() {
     return (
-        <section className="flex-1 w-full h-[500px] p-2 pt-10">
-            <h2 className="text-xl text-[#444] p-8 py-4 border-b border-[#444]/20">
-                Selecciona fecha y hora
-            </h2>
+        <ContentLayout title="Selecciona fecha y hora">
             <MiniCalendarDate />
-        </section>
+        </ContentLayout>
     );
 }
 
@@ -27,8 +25,8 @@ const MiniCalendarDate = () => {
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
     return (
-        <article className="flex-1 flex flex-col gap-8 items-center mt-8">
-            <div className="flex flex-col gap-3 justify-center items-center w-2/3">
+        <article className="flex-1 flex flex-col gap-8 items-center mt-8 w-full">
+            <div className="flex flex-col gap-3 justify-center items-center w-full">
                 <div className="w-full relative">
                     <h3 className="text-xs text-[#444] ">Selecciona fecha</h3>
                     {selectedDate && (
@@ -82,7 +80,7 @@ const TimeContainer = () => {
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
     return (
-        <div className="flex flex-col gap-3 justify-center items-center w-2/3">
+        <div className="flex flex-col gap-3 justify-center items-center w-full">
             <div className="w-full relative">
                 <h3 className="text-xs text-[#444] ">Selecciona hora</h3>
                 {selectedTime && (

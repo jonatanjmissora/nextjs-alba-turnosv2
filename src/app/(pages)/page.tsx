@@ -1,12 +1,10 @@
 import ServicesAccordion from "../_components/01-services/accordion";
+import ContentLayout from "../_components/ContentLayout";
 
 export default function Services() {
-  return (
-    <section className="flex-1 w-full h-[500px] p-2 pt-10">
-      <h2 className="text-xl text-[#444] p-8 py-4 border-b border-[#444]/20">
-        Selecciona un servicio
-      </h2>
-      <ServicesAccordion />
-    </section>
-  );
+    return (
+        <ContentLayout title="Selecciona un servicio">
+            <ServicesAccordion />
+        </ContentLayout>
+    );
 }
