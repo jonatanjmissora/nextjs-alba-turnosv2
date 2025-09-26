@@ -16,7 +16,7 @@ export default function TimeLine() {
     const setCheckout = useZStore((state) => state.setCheckout);
 
     const handleReset = () => {
-        setSelectedService("0");
+        setSelectedService(undefined);
         setSelectedDate(new Date());
         setSelectedTime(undefined);
         setName(undefined);
@@ -97,7 +97,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
 
     let nextActive = false;
     if (
-        (pathname === "/" && selectedService !== "0") ||
+        (pathname === "/" && selectedService) ||
         (pathname === "/calendar" && selectedDate && selectedTime)
     ) {
         nextActive = true;

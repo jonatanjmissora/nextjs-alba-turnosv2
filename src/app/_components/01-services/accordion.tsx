@@ -39,7 +39,7 @@ const AccordionItemElement = ({ service }: { service: ServiceType }) => {
                     stroke={3}
                     size={40}
                     color="#ff8000"
-                    className={`absolute top-1/2 transform -translate-y-1/2 right-2 ${selectedService === service.id ? "block" : "hidden"}`}
+                    className={`absolute top-1/2 transform -translate-y-1/2 right-2 ${selectedService && selectedService === service.id ? "block" : "hidden"}`}
                 />
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
@@ -56,8 +56,8 @@ const ServiceCard = ({ service }: { service: ServiceType }) => {
     const selectedService = useZStore((state) => state.selectedService);
     const setSelectedService = useZStore((state) => state.setSelectedService);
     const handleSelectService = () => {
-        if (selectedService === service.id) {
-            setSelectedService("0");
+        if (selectedService && selectedService === service.id) {
+            setSelectedService(undefined);
         } else {
             setSelectedService(service.id);
         }
@@ -66,7 +66,7 @@ const ServiceCard = ({ service }: { service: ServiceType }) => {
     return (
         <button
             type="button"
-            className={`flex flex-col justify-between items-center bg-pink-100 p-4 border border-[#444]/20 rounded-lg m-2 shadow-xl ${selectedService === service.id && "bg-pink-300/20"}`}
+            className={`flex flex-col justify-between items-center bg-pink-100 p-4 border border-[#444]/20 rounded-lg m-2 shadow-xl ${selectedService && selectedService === service.id && "bg-pink-300/20"}`}
             onClick={handleSelectService}
         >
             <div className="text-[#333] w-full flex justify-between items-center pb-2">
