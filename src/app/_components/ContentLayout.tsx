@@ -10,7 +10,7 @@ export default function ContentLayout({
             <h2 className="text-xl text-[#444] p-8 py-4 border-b border-[#444]/20">
                 {title}
             </h2>
-            <div className="flex flex-col gap-4 justify-center items-center w-2/3 m-auto flex-1">
+            <div className="flex flex-col gap-4 justify-center items-center w-full m-auto flex-1">
                 {children}
             </div>
         </section>

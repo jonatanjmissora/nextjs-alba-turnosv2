@@ -19,7 +19,7 @@ export default function DataPage() {
 
     return (
         <ContentLayout title="Completar datos personales">
-            <div className="flex-1">
+            <div className="flex-1 w-[80%] flex flex-col items-center">
                 <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center pt-12">
                     <NameElement />
 
@@ -39,7 +39,7 @@ export default function DataPage() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-2 text-xs text-[#444]/80 justify-center items-center w-full text-center">
+            <div className="flex flex-col gap-2 text-xs text-[#444]/80 justify-center items-center w-[80%] mx-auto text-center">
                 <p className="w-full">
                     Se recuerda que la atención es personalizadas, por lo que
                     debe asistir sin compania.

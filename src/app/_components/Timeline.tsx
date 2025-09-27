@@ -110,7 +110,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
         return (
             <Link
                 href="/checkout"
-                className={`w-[14ch] text-center py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.35)] bg-[#ff8000]`}
+                className={`w-[14ch] text-center py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.35)] bg-[#ff8000]/70`}
             >
                 CONFIRMAR
             </Link>

@@ -25,7 +25,7 @@ const MiniCalendarDate = () => {
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
     return (
-        <article className="flex-1 flex flex-col gap-8 items-center mt-8 w-full">
+        <article className="flex-1 flex flex-col gap-8 items-center mt-8 w-[80%]">
             <div className="flex flex-col gap-3 justify-center items-center w-full">
                 <div className="w-full relative">
                     <h3 className="text-xs text-[#444] ">Selecciona fecha</h3>
@@ -97,7 +97,7 @@ const TimeContainer = () => {
                     <button
                         key={time.id}
                         type="button"
-                        className={`p-3 sm:p-2 2xl:p-3 px-6 sm:px-4 2xl:px-6 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/20 ${selectedTime !== time.time ? "bg-pink-300/20" : "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]"}`}
+                        className={`p-3 px-6 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/20 ${selectedTime !== time.time ? "bg-pink-300/20" : "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]"}`}
                         onClick={() => setSelectedTime(time.time)}
                     >
                         {time.time}
