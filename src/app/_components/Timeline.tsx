@@ -3,15 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useZStore } from "@/providers/zustand-provider";
+import { CheckIcon } from "lucide-react";
 
 export default function TimeLine() {
     const pathname = usePathname();
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
 
+    const selectedService = useZStore((state) => state.selectedService);
     const setSelectedService = useZStore((state) => state.setSelectedService);
+    const selectedDate = useZStore((state) => state.selectedDate);
     const setSelectedDate = useZStore((state) => state.setSelectedDate);
+    const selectedTime = useZStore((state) => state.selectedTime);
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
+    const name = useZStore((state) => state.name);
     const setName = useZStore((state) => state.setName);
+    const phone = useZStore((state) => state.phone);
     const setPhone = useZStore((state) => state.setPhone);
     const setCheckout = useZStore((state) => state.setCheckout);
 
@@ -45,19 +51,23 @@ export default function TimeLine() {
 
             <ul className="flex gap-4">
                 <li
-                    className={`p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${pathname === "/" && activeColor}`}
+                    className={`size-8 flex justify-center items-center p-2 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${selectedService ? "bg-orange-500/70" : "transparent"}`}
                 >
-                    1
+                    {selectedService ? <CheckIcon size={15} /> : <span>1</span>}
                 </li>
                 <li
-                    className={`p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${pathname === "/calendar" && activeColor}`}
+                    className={`size-8 flex justify-center items-center rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${selectedDate && selectedTime ? "bg-orange-500/70" : "transparent"}`}
                 >
-                    2
+                    {selectedDate && selectedTime ? (
+                        <CheckIcon size={15} />
+                    ) : (
+                        <span>2</span>
+                    )}
                 </li>
                 <li
-                    className={`p-2 px-3 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${pathname === "/checkout" && activeColor}`}
+                    className={`size-8 flex justify-center items-center p-2 rounded-full text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${name && phone ? "bg-orange-500/70" : "transparent"}`}
                 >
-                    3
+                    {name && phone ? <CheckIcon size={15} /> : <span>3</span>}
                 </li>
             </ul>
             <NextButton pathname={pathname} />
@@ -110,7 +120,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
         return (
             <Link
                 href="/checkout"
-                className={`w-[14ch] text-center py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.35)] bg-[#ff8000]/70`}
+                className={`animate-bounce w-[14ch] text-center py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.35)] bg-[#ff8000]/70`}
             >
                 CONFIRMAR
             </Link>

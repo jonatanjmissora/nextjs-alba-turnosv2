@@ -1,7 +1,13 @@
-export default function Loading() {
+"use client";
+
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
+
+function Loading() {
     return (
-        <div className="w-full flex-1 h-[400px] flex justify-center items-center text-bold text-4xl tracking-widest">
-            loading
-        </div>
+        <article className="h-full w-full flex items-center justify-center">
+            <Spinner variant={"bars"} size={50} />
+        </article>
     );
 }
+
+export default Loading;

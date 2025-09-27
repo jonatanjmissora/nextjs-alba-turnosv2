@@ -92,7 +92,7 @@ const TimeContainer = () => {
                     />
                 )}
             </div>
-            <div className="flex flex-wrap gap-2 justify-center items-center py-8 px-4 border border-[#444]/20 rounded-lg shadow bg-pink-100">
+            <div className="w-full grid grid-cols-4 gap-3 py-8 px-4 border border-[#444]/20 rounded-lg shadow bg-pink-100">
                 {timeRange.map((time) => (
                     <button
                         key={time.id}
