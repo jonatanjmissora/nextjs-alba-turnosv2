@@ -7,7 +7,6 @@ import { CheckIcon } from "lucide-react";
 
 export default function TimeLine() {
     const pathname = usePathname();
-    const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
 
     const selectedService = useZStore((state) => state.selectedService);
     const setSelectedService = useZStore((state) => state.setSelectedService);
