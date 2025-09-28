@@ -25,8 +25,8 @@ const MiniCalendarDate = () => {
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
     return (
-        <article className="flex-1 flex flex-col gap-8 items-center mt-8 w-[80%]">
-            <div className="flex flex-col gap-3 justify-center items-center w-full">
+        <article className="flex-1 flex flex-col sm:gap-6 2xl:gap-8 items-center mt-8 w-[80%]">
+            <div className="flex flex-col sm:gap-2 2xl:gap-3 justify-center items-center w-full">
                 <div className="w-full relative">
                     <h3 className="text-xs text-[#444] ">Selecciona fecha</h3>
                     {selectedDate && (
@@ -80,7 +80,7 @@ const TimeContainer = () => {
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
     return (
-        <div className="flex flex-col gap-3 justify-center items-center w-full">
+        <div className="flex flex-col sm:gap-2 2xl:gap-3 justify-center items-center w-full">
             <div className="w-full relative">
                 <h3 className="text-xs text-[#444] ">Selecciona hora</h3>
                 {selectedTime && (
@@ -92,7 +92,7 @@ const TimeContainer = () => {
                     />
                 )}
             </div>
-            <div className="w-full grid grid-cols-4 gap-3 py-8 px-4 border border-[#444]/20 rounded-lg shadow bg-pink-100">
+            <div className="w-full grid grid-cols-4 sm:gap-2 2xl:gap-3 p-4 border border-[#444]/20 rounded-lg shadow bg-pink-100">
                 {timeRange.map((time) => (
                     <button
                         key={time.id}

@@ -4,6 +4,7 @@ import { services } from "@/lib/services-mock";
 import { getServiceData } from "@/lib/utils";
 import { useZStore } from "@/providers/zustand-provider";
 import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 export default function MobilCheckoutPage() {
     const selectedService = useZStore((state) => state.selectedService);
@@ -14,13 +15,14 @@ export default function MobilCheckoutPage() {
         selectedService,
         services,
     );
+    const { width, height } = useWindowSize();
 
     return (
         <section className="flex-1 w-full mx-auto h-[500px] p-2 flex flex-col justify-center gap-12 items-center">
             <h2 className="text-xl sm:text-lg 2xl:text-xl text-[#444] p-8 py-4 border border-[#444]/20 shadow-lg bg-pink-50 rounded-lg font-semibold tracking-wider w-full text-center text-balance">
                 ¡¡ Tu turno ha sido confirmado !!
             </h2>
-            <Confetti gravity={0.035} width={600} height={1000} />
+            <Confetti gravity={0.035} width={width} height={height} />
 
             <div className="flex flex-col gap-4 bg-pink-50 border border-[#444]/20 shadow-lg rounded-lg p-4 w-full">
                 <div className="grid grid-cols-[1fr_2.5fr] gap-3 items-center text-semibold text-xl sm:text-base 2xl:text-xl">

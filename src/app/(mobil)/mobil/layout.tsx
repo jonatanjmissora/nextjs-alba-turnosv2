@@ -31,7 +31,7 @@ export default function RootLayout({
                 suppressHydrationWarning
             >
                 <div
-                    className="absolute inset-0 z-[-10]"
+                    className="fixed inset-0 z-[-10]"
                     style={{
                         background: `linear-gradient(270deg, #FFECB3 0%, #FFE0B2 20%, #FFCDD2 40%, #F8BBD9 60%, #E1BEE7 80%, #D1C4E9 100%)`,
                     }}

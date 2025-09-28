@@ -40,7 +40,7 @@ export default function RootLayout({
 
                 <ZustandProvider>
                     <main className="w-screen flex-1 flex flex-col items-center justify-center">
-                        <div className="sm:w-2/3 2xl:w-1/2 h-[600px] flex flex-col justify-center items-center bg-gradient-to-b from-pink-100 via-[#FADBE0] to-[#ffc0cb] shadow-[6px_6px_10px_3px_rgba(0,0,0,0.15)] overflow-hidden">
+                        <div className="sm:w-2/3 2xl:w-1/2 sm:h-[525px] 2xl:h-[600px] flex flex-col justify-center items-center bg-gradient-to-b from-pink-100 via-[#FADBE0] to-[#ffc0cb] shadow-[6px_6px_10px_3px_rgba(0,0,0,0.15)] overflow-hidden">
                             <div className="w-full h-full flex">
                                 <Aside />
                                 <div className="w-2/3 flex flex-col">
@@ -50,7 +50,7 @@ export default function RootLayout({
                             </div>
                         </div>
                     </main>
-                    <footer className="w-screen px-10 h-10 flex items-center justify-end">
+                    <footer className="w-screen text-xs px-10 h-6 flex items-center justify-end">
                         k@toDev
                     </footer>
                 </ZustandProvider>

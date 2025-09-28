@@ -23,7 +23,7 @@ export default function ServicesAccordion() {
     };
 
     return (
-        <div className="w-[80%] p-3 mx-auto h-[445px] flex flex-col items-center services-card-container">
+        <div className="w-[80%] p-3 mx-auto sm:h-[375px] 2xl:h-[445px] flex flex-col items-center services-card-container">
             <Accordion
                 type="single"
                 collapsible

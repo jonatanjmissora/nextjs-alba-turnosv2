@@ -89,7 +89,7 @@ const PrevButton = ({ pathname }: { pathname: string }) => {
                 </Link>
             ) : (
                 <span
-                    className={`w-[14ch]  p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow`}
+                    className={`w-[14ch] text-center  p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow`}
                 >
                     ATRAS
                 </span>
