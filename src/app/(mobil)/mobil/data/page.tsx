@@ -98,7 +98,7 @@ const NameElement = () => {
                         stroke={3}
                         size={40}
                         color="#ff8000"
-                        className={`absolute -top-2 -right-10 block`}
+                        className={`absolute -top-2 -right-0 block`}
                     />
                 )}
             </div>
@@ -145,7 +145,7 @@ const PhoneElement = () => {
                         stroke={3}
                         size={40}
                         color="#ff8000"
-                        className={`absolute -top-2 -right-10 block`}
+                        className={`absolute -top-2 -right-0 block`}
                     />
                 )}
             </div>

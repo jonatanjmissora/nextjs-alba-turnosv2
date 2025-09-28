@@ -95,7 +95,7 @@ const TimeContainer = () => {
                     <button
                         key={time.id}
                         type="button"
-                        className={`p-3 px-6 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/20 ${selectedTime !== time.time ? "bg-pink-300/20" : "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]"}`}
+                        className={`p-3 text-center rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/20 ${selectedTime !== time.time ? "bg-pink-300/20" : "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]"}`}
                         onClick={() => setSelectedTime(time.time)}
                     >
                         {time.time}
