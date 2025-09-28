@@ -1,5 +1,5 @@
-import MovilAccordion from "@/app/_components/mobil/movil-accordion";
+import MobilAccordion from "@/app/_components/mobil/mobil-accordion";
 
 export default function page() {
-    return <MovilAccordion />;
+    return <MobilAccordion />;
 }

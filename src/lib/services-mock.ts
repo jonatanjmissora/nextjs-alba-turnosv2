@@ -38,7 +38,7 @@ export const services: ServiceType[] = [
             },
             {
                 id: "22",
-                subtitle: "Completa hasta la concha de tu madre",
+                subtitle: "Completa con un título muy largo",
                 price: "100.000",
                 description:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
