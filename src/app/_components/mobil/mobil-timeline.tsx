@@ -29,12 +29,12 @@ export default function MobilTimeLine() {
         setCheckout(false);
     };
 
-    if (pathname === "/checkout") {
+    if (pathname === "/mobil/checkout") {
         return (
-            <article className="w-full flex justify-end px-20 items-center h-16 bg-[#ffbdc8] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.2)]">
+            <article className="w-full flex justify-center items-center h-16 bg-[#ffbdc8] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.2)]">
                 <button type="button" className="p-0 m-0" onClick={handleReset}>
                     <Link
-                        href="/"
+                        href="/mobil"
                         className="p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow bg-pink-50"
                     >
                         VOLVER
@@ -75,8 +75,9 @@ export default function MobilTimeLine() {
 }
 
 const PrevButton = ({ pathname }: { pathname: string }) => {
-    const prevActive = pathname !== "/";
-    const prevHref = pathname === "/calendar" ? "/" : "/calendar";
+    const prevActive = pathname !== "/mobil";
+    const prevHref =
+        pathname === "/mobil/calendar" ? "/mobil" : "/mobil/calendar";
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
     return (
         <>
@@ -106,19 +107,19 @@ const NextButton = ({ pathname }: { pathname: string }) => {
 
     let nextActive = false;
     if (
-        (pathname === "/" && selectedService) ||
-        (pathname === "/calendar" && selectedDate && selectedTime)
+        (pathname === "/mobil" && selectedService) ||
+        (pathname === "/mobil/calendar" && selectedDate && selectedTime)
     ) {
         nextActive = true;
     }
 
-    const nextHref = pathname === "/" ? "/calendar" : "/data";
+    const nextHref = pathname === "/mobil" ? "/mobil/calendar" : "/mobil/data";
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
 
-    if (checkout && pathname === "/data") {
+    if (checkout && pathname === "/mobil/data") {
         return (
             <Link
-                href="/checkout"
+                href="/mobil/checkout"
                 className={`animate-bounce w-[14ch] text-center py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.35)] bg-[#ff8000]/70`}
             >
                 CONFIRMAR
@@ -128,7 +129,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
 
     return (
         <>
-            {nextActive && pathname !== "/data" ? (
+            {nextActive && pathname !== "/mobil/data" ? (
                 <Link
                     className={`w-[14ch] text-center  py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${activeColor}`}
                     href={nextHref}
@@ -139,7 +140,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
                 <span
                     className={`w-[14ch] text-center  py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow`}
                 >
-                    {pathname === "/data" ? "CONFIRMAR" : "SIGUIENTE"}
+                    {pathname === "/mobil/data" ? "CONFIRMAR" : "SIGUIENTE"}
                 </span>
             )}
         </>

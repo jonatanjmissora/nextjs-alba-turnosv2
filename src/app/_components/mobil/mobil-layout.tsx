@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TimeLine from "../Timeline";
+import MobilTimeLine from "./mobil-timeline";
 
 export default function MobilLayout({
     children,
@@ -13,7 +13,7 @@ export default function MobilLayout({
             {children}
 
             <div className="mt-10">
-                <TimeLine />
+                <MobilTimeLine />
             </div>
 
             <MobilFooter />
