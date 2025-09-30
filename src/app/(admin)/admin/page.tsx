@@ -6,32 +6,40 @@ import {
     MiniCalendarDays,
     MiniCalendarNavigation,
 } from "@/components/ui/shadcn-io/mini-calendar";
+import { timeRange } from "@/lib/time";
+import { turnosmock, type TurnoType } from "@/lib/turnos-mock";
 import { useState } from "react";
 
 export default function AdminPage() {
+    const [selectedAdminDate, setSelectedAdminDate] = useState<Date>(
+        new Date(),
+    );
+
     return (
-        <section className="w-[90%] h-[95dvh] my-5 flex flex-col gap-4 items-center justify-center bg-pink-100 shadow rounded-lg overflow-hidden">
-            <MiniCalendarElement />
-            <TimeContainer />
+        <section className="w-[95dvw] h-[95dvh] m-5 flex flex-col gap-4 items-center justify-center overflow-hidden">
+            <MiniCalendarElement
+                selectedAdminDate={selectedAdminDate}
+                setSelectedAdminDate={setSelectedAdminDate}
+            />
+            <TimeContainer selectedAdminDate={selectedAdminDate} />
+            {selectedAdminDate.toLocaleDateString()}
         </section>
     );
 }
 
-const MiniCalendarElement = () => {
-    const [adminSelectedDate, setAdminSelectedDate] = useState<Date>(
-        new Date(),
-    );
-    const [adminSelectedTime, setAdminSelectedTime] = useState<
-        string | undefined
-    >(undefined);
-
+const MiniCalendarElement = ({
+    selectedAdminDate,
+    setSelectedAdminDate,
+}: {
+    selectedAdminDate: Date;
+    setSelectedAdminDate: (date: Date) => void;
+}) => {
     return (
         <MiniCalendar
             onValueChange={(date = new Date()) => {
-                setAdminSelectedDate(date);
-                setAdminSelectedTime(undefined);
+                setSelectedAdminDate(date);
             }}
-            value={adminSelectedDate}
+            value={selectedAdminDate}
             className="bg-pink-100 flex justify-center items-center border border-[#444]/20 shadow w-full "
         >
             <MiniCalendarNavigation direction="prev" />
@@ -45,40 +53,50 @@ const MiniCalendarElement = () => {
     );
 };
 
-const TimeContainer = () => {
+const getTurnosByDate = (date: Date) => {
+    return turnosmock.filter(
+        (turno) => turno.date === date.toLocaleDateString(),
+    );
+};
+
+const TimeContainer = ({ selectedAdminDate }: { selectedAdminDate: Date }) => {
+    const turnosDate = getTurnosByDate(selectedAdminDate);
+
     return (
-        <article className="w-full grid grid-cols-[0.2fr_1fr] text-center gap-1 py-3  border border-[#444]/20 rounded-lg shadow bg-pink-100">
-            {turnosmock.map((turno) => (
-                <Turno key={turno.id} turno={turno} />
+        <article className="w-full border border-[#444]/20  shadow bg-pink-100 p-2 rounded-lg">
+            {timeRange.map((time) => (
+                <Turno
+                    key={time.id}
+                    time={time.time}
+                    turno={turnosDate.find((turno) => turno.time === time.time)}
+                />
             ))}
         </article>
     );
 };
 
-const Turno = (turno) => {
+const Turno = ({
+    time,
+    turno,
+}: {
+    time: string;
+    turno: TurnoType | undefined;
+}) => {
     return (
-        <article key={turno.id}>
-            <span className="w-full border border-[#444]/20">{turno.time}</span>
-            <span className="w-full border border-[#444]/20">{turno.name}</span>
-        </article>
+        <div
+            className={`flex justify-center items-center text-center border border-[#444]/20 ${turno ? "bg-[#ff9bac] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]" : ""}`}
+        >
+            <span className="w-[20%] h-full py-2">{time}</span>
+            {turno ? (
+                <div className="w-[80%] py-2 flex flex-col border-l border-[#444]/20">
+                    <span>{turno.service}</span>
+                    <span className="text-[#444]/85">{turno.name}</span>
+                </div>
+            ) : (
+                <div className="w-[80%] py-2 border-l border-[#444]/20">
+                    <span>-</span>
+                </div>
+            )}
+        </div>
     );
 };
-
-const turnosmock = [
-    {
-        id: "1",
-        date: "12/10/2025",
-        time: "12:00",
-        service: "Maderoterapia",
-        name: "Gladys",
-        phone: "123456789",
-    },
-    {
-        id: "2",
-        date: "12/10/2025",
-        time: "12:00",
-        service: "Maderoterapia",
-        name: "Gladys",
-        phone: "123456789",
-    },
-];
