@@ -71,7 +71,7 @@ export default function ServicesAccordion() {
                                             $ {category.price}
                                         </span>
                                     </div>
-                                    <p className="text-xs text-[#444]/70 text-balance p-1">
+                                    <p className="text-xs text-[#444]/70 text-balance p-1 text-left">
                                         {category.description}
                                     </p>
                                     <span className="w-full text-right text-xs text-[#444]/80">
