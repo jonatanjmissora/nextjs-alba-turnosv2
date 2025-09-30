@@ -48,7 +48,7 @@ export default function DataPage() {
                     ⏱ Los turnos solo se cancelan con 24 hs de antelación, caso
                     contrario se deberá abonar la seña.
                 </p>
-                <p className="w-full">💰 Transferencias : mi_alias</p>
+                <p className="w-full">💰 Transferencias : albanaestetica</p>
                 <p className="w-full">
                     📱 Mandar comprobante luego de la transferencia
                 </p>
