@@ -10,6 +10,8 @@ import { timeRange } from "@/lib/time";
 import { turnosmock, type TurnoType } from "@/lib/turnos-mock";
 import { PlusIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
+import { AlertDialogComponent } from "@/app/_components/AlertDialog";
 
 export default function AdminPage() {
     const [selectedAdminDate, setSelectedAdminDate] = useState<Date>(
@@ -99,25 +101,26 @@ const Turno = ({
                 <div className="w-[80%] h-[64px] p-2 px-4 border-l border-[#444]/20  flex flex-col justify-center items-center relative">
                     <span className="font-semibold tracking-wider text-[#444]">{turno.service}</span>
                     <span className="text-[#444]/85">{turno.name}</span>
-                    <button
-                        type="button"
-                        className={`h-full aspect-square absolute top-1/2 transform translate-y-[-50%] right-0 flex justify-center items-center ${selected && "bg-[#400]/30"}`}
-                    >
-                        {selected && (
-                            <Trash2Icon className="size-6 text-[#400]/50" />
-                        )}
-                    </button>
+                    {selected && (
+                                            <div
+                                                className={`h-full aspect-square absolute top-1/2 transform translate-y-[-50%] right-0 flex justify-center items-center ${selected && "bg-[#400]/30"}`}
+                                            >
+                                        <AlertDialogComponent>
+                                                <Trash2Icon className="size-6 text-[#400]/50 cursor-pointer" />
+                                        </AlertDialogComponent>
+                                        </div>
+                                            )}
                 </div>
             ) : (
                 <div className="w-[80%] h-[64px] py-2 border-l border-[#444]/20 relative">
-                    <button
-                        type="button"
+                    <Link
+                        href="/"
                         className={`h-full aspect-square absolute top-1/2 transform translate-y-[-50%] right-0 flex justify-center items-center ${selected && "bg-[#040]/30"}`}
                     >
                         {selected && (
                             <PlusIcon className="size-7 text-[#444]/80" />
                         )}
-                    </button>
+                    </Link>
                 </div>
             )}
         </div>
