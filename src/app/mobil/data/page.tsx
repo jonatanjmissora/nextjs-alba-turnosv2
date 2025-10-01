@@ -1,5 +1,6 @@
 "use client";
 
+import MobilLayout from "@/app/_components/mobil/mobil-layout";
 import { services } from "@/lib/services-mock";
 import { getServiceData } from "@/lib/utils";
 import { useZStore } from "@/providers/zustand-provider";
@@ -17,45 +18,47 @@ export default function MobilDataPage() {
     );
 
     return (
-        <section className="flex-1 flex flex-col gap-12 items-center mx-auto w-[90%] min-h-[40vh]">
-            <div className="w-full flex flex-col items-center">
-                <h2 className="w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8">
-                    Completar datos personales
-                </h2>
-                <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center">
-                    <NameElement />
+        <MobilLayout>
+            <section className="flex-1 flex flex-col gap-12 items-center mx-auto w-[90%] min-h-[40vh]">
+                <div className="w-full flex flex-col items-center">
+                    <h2 className="w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8 relative z-10">
+                        Completar datos personales
+                    </h2>
+                    <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center">
+                        <NameElement />
 
-                    <PhoneElement />
+                        <PhoneElement />
 
-                    <span className="text-[#444]">servicio :</span>
-                    <span>{serviceTitle || ""}</span>
+                        <span className="text-[#444]">servicio :</span>
+                        <span>{serviceTitle || ""}</span>
 
-                    <span className="text-[#444]">fecha :</span>
-                    <span>{selectedDate?.toLocaleDateString() || ""}</span>
+                        <span className="text-[#444]">fecha :</span>
+                        <span>{selectedDate?.toLocaleDateString() || ""}</span>
 
-                    <span className="text-[#444]">hora :</span>
-                    <span>{selectedTime || ""} hs</span>
+                        <span className="text-[#444]">hora :</span>
+                        <span>{selectedTime || ""} hs</span>
 
-                    <span className="text-[#444]">valor :</span>
-                    <span>$ {servicePrice || ""}</span>
+                        <span className="text-[#444]">valor :</span>
+                        <span>$ {servicePrice || ""}</span>
+                    </div>
                 </div>
-            </div>
 
-            <div className="flex flex-col gap-2 text-xs text-[#444]/80 justify-center items-center w-full mx-auto text-center">
-                <p className="w-full">
-                    Se recuerda que la atención es personalizadas, por lo que
-                    debe asistir sin compania.
-                </p>
-                <p className="w-full">
-                    ⏱ Los turnos solo se cancelan con 24 hs de antelación, caso
-                    contrario se deberá abonar la seña.
-                </p>
-                <p className="w-full">💰 Transferencias : albanaestetica</p>
-                <p className="w-full">
-                    📱 Mandar comprobante luego de la transferencia
-                </p>
-            </div>
-        </section>
+                <div className="flex flex-col gap-2 text-xs text-[#444]/80 justify-center items-center w-full mx-auto text-center">
+                    <p className="w-full">
+                        Se recuerda que la atención es personalizadas, por lo
+                        que debe asistir sin compania.
+                    </p>
+                    <p className="w-full">
+                        ⏱ Los turnos solo se cancelan con 24 hs de antelación,
+                        caso contrario se deberá abonar la seña.
+                    </p>
+                    <p className="w-full">💰 Transferencias : albanaestetica</p>
+                    <p className="w-full">
+                        📱 Mandar comprobante luego de la transferencia
+                    </p>
+                </div>
+            </section>
+        </MobilLayout>
     );
 }
 

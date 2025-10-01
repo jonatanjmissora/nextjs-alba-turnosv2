@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import { ZustandProvider } from "@/providers/zustand-provider";
 import Aside from "../_components/Aside";
 import TimeLine from "../_components/Timeline";

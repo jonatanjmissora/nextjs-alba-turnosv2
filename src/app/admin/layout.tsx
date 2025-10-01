@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../../(pages)/globals.css";
-import { ZustandProvider } from "@/providers/zustand-provider";
-import MovilLayout from "@/app/_components/mobil/mobil-layout";
+import "@/app/globals.css";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -37,11 +35,7 @@ export default function RootLayout({
                     }}
                 ></div>
 
-                <ZustandProvider>
-                    <main className="w-screen flex-1 flex flex-col items-center justify-center my-6">
-                        <MovilLayout>{children}</MovilLayout>
-                    </main>
-                </ZustandProvider>
+                {children}
             </body>
         </html>
     );

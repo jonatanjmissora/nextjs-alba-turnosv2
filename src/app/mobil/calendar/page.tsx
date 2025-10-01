@@ -9,9 +9,14 @@ import {
 import { IconCheck } from "@tabler/icons-react";
 import { timeRange } from "@/lib/time";
 import { useZStore } from "@/providers/zustand-provider";
+import MobilLayout from "@/app/_components/mobil/mobil-layout";
 
 export default function MobilCalendarPage() {
-    return <MiniCalendarDate />;
+    return (
+        <MobilLayout>
+            <MiniCalendarDate />
+        </MobilLayout>
+    );
 }
 
 const MiniCalendarDate = () => {
