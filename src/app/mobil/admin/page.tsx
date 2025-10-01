@@ -99,17 +99,19 @@ const Turno = ({
             </button>
             {turno ? (
                 <div className="w-[80%] h-[64px] p-2 px-4 border-l border-[#444]/20  flex flex-col justify-center items-center relative">
-                    <span className="font-semibold tracking-wider text-[#444]">{turno.service}</span>
+                    <span className="font-semibold tracking-wider text-[#444]">
+                        {turno.service}
+                    </span>
                     <span className="text-[#444]/85">{turno.name}</span>
                     {selected && (
-                                            <div
-                                                className={`h-full aspect-square absolute top-1/2 transform translate-y-[-50%] right-0 flex justify-center items-center ${selected && "bg-[#400]/30"}`}
-                                            >
-                                        <AlertDialogComponent>
-                                                <Trash2Icon className="size-6 text-[#400]/50 cursor-pointer" />
-                                        </AlertDialogComponent>
-                                        </div>
-                                            )}
+                        <div
+                            className={`h-full aspect-square absolute top-1/2 transform translate-y-[-50%] right-0 flex justify-center items-center ${selected && "bg-[#400]/30"}`}
+                        >
+                            <AlertDialogComponent>
+                                <Trash2Icon className="size-6 text-[#400]/50 cursor-pointer" />
+                            </AlertDialogComponent>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <div className="w-[80%] h-[64px] py-2 border-l border-[#444]/20 relative">

@@ -19,7 +19,7 @@ export function AlertDialogComponent({
         <AlertDialog>
             <AlertDialogTrigger
                 asChild
-                className="cursor-pointer h-full w-full p-4"
+                className="cursor-pointer h-full w-full p-2 2xl:p-4"
             >
                 {children}
             </AlertDialogTrigger>
