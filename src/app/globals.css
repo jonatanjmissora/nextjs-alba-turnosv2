@@ -130,5 +130,10 @@
 
 input[type="number"] {
     appearance: none;
+    -webkit-appearance: none;
     -moz-appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        height: 0;
+    }
 }
