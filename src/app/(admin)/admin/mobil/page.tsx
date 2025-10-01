@@ -17,7 +17,7 @@ export default function AdminPage() {
     );
 
     return (
-        <section className="w-1/3 min-h-[95dvh] m-5 mb-12 flex flex-col gap-4 items-center overflow-hidden">
+        <section className="w-[95dvw] min-h-[95dvh] m-5 mb-12 flex flex-col gap-4 items-center overflow-hidden">
             <MiniCalendarElement
                 selectedAdminDate={selectedAdminDate}
                 setSelectedAdminDate={setSelectedAdminDate}
@@ -86,7 +86,7 @@ const Turno = ({
 
     return (
         <div
-            className={`text-base sm:text-xs 2xl:text-base flex justify-center items-center text-center border border-[#444]/20 ${turno ? "bg-[#ff9bac]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]" : ""}`}
+            className={`flex justify-center items-center text-center border border-[#444]/20 ${turno ? "bg-[#ff9bac]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]" : ""}`}
         >
             <button
                 type="button"
@@ -96,7 +96,7 @@ const Turno = ({
                 {time}
             </button>
             {turno ? (
-                <div className="w-[80%] h-[64px] sm:h-[42px] 2xl:h-[64px] p-2 px-4 border-l border-[#444]/20  flex flex-col justify-center items-center relative">
+                <div className="w-[80%] h-[64px] p-2 px-4 border-l border-[#444]/20  flex flex-col justify-center items-center relative">
                     <span>{turno.service}</span>
                     <span className="text-[#444]/85">{turno.name}</span>
                     <button
@@ -109,7 +109,7 @@ const Turno = ({
                     </button>
                 </div>
             ) : (
-                <div className="w-[80%] h-[64px] sm:h-[42px] 2xl:h-[64px] py-2 border-l border-[#444]/20 relative">
+                <div className="w-[80%] h-[64px] py-2 border-l border-[#444]/20 relative">
                     <button
                         type="button"
                         className={`h-full aspect-square absolute top-1/2 transform translate-y-[-50%] right-0 flex justify-center items-center ${selected && "bg-[#040]/30"}`}

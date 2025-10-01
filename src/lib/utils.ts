@@ -28,3 +28,8 @@ export function getServiceData(
     }
     return { serviceTitle: `${serviceTitle} - ${categoryTitle}`, servicePrice };
 }
+
+export const getDayOfTheWeek = (date: Date) => {
+    const days = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
+    return days[date.getDay()];
+};
