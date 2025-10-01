@@ -97,7 +97,7 @@ const Turno = ({
             </button>
             {turno ? (
                 <div className="w-[80%] h-[64px] p-2 px-4 border-l border-[#444]/20  flex flex-col justify-center items-center relative">
-                    <span>{turno.service}</span>
+                    <span className="font-semibold tracking-wider text-[#444]">{turno.service}</span>
                     <span className="text-[#444]/85">{turno.name}</span>
                     <button
                         type="button"
