@@ -22,7 +22,7 @@ export default function LoginForm({ redirectTo }: { redirectTo: string }) {
     return (
         <form
             action={handleSubmit}
-            className="flex flex-col gap-4 items-center w-2/3 relative"
+            className="flex flex-col gap-4 items-center w-3/4 relative"
         >
             <input
                 type="number"
