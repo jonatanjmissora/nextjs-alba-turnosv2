@@ -1,10 +1,10 @@
 "use client";
 
 import { useZStore } from "@/store/zustand-provider";
-import { getAllServicesAction } from "../_actions/turno-actions";
 import { useState } from "react";
 import SubmitBtn from "./SubmitBtn";
 import { useRouter, usePathname } from "next/navigation";
+import { addTurnoAction } from "../_actions/turno-actions";
 
 export default function ConfirmForm() {
     const selectedService = useZStore((state) => state.selectedService);
@@ -19,7 +19,13 @@ export default function ConfirmForm() {
 
     const handleConfirm = async () => {
         if (selectedService && selectedDate && selectedTime && name && phone) {
-            const { data, error } = await getAllServicesAction();
+            const { data, error } = await addTurnoAction(
+                selectedService,
+                selectedDate.toISOString(),
+                selectedTime,
+                name,
+                phone,
+            );
             if (error) {
                 console.error(error);
                 setError("Intente de nuevo");
