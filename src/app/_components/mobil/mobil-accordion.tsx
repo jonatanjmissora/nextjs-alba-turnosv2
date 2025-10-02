@@ -9,10 +9,11 @@ import {
 import { type CategoryType, services } from "@/lib/services-mock";
 import { IconCheck } from "@tabler/icons-react";
 import { useZStore } from "@/store/zustand-provider";
+import { formatPrice, getServicesTree } from "@/lib/utils";
 
 export default function MobilAccordion() {
     const selectedService = useZStore((state) => state.selectedService);
-
+    const servicesTree = getServicesTree(services);
     return (
         <div className="w-[95%] p-3 mx-auto flex flex-col items-center">
             <h2 className="w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8">
@@ -25,7 +26,7 @@ export default function MobilAccordion() {
                 className="w-full border-b border-[#444]/20"
                 defaultValue="item-1"
             >
-                {services.map((service) => (
+                {servicesTree.map((service) => (
                     <AccordionItem key={service.id} value={service.id}>
                         <AccordionTrigger>
                             <div className="relative">
@@ -85,7 +86,7 @@ const MovilServiceCard = ({ category }: { category: CategoryType }) => {
                     />
                 </div>
                 <span className="text-base text-[#444] font-semibold text-balance w-[12ch] text-right">
-                    $ {category.price}
+                    $ {formatPrice(category.price)}
                 </span>
             </div>
             <p className="text-xs text-[#444]/70 text-balance p-1">

@@ -82,3 +82,9 @@ export function getServicesTree(services: ServiceType[]): ServiceTreeType[] {
 
     return result;
 }
+
+export const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("de-DE", { minimumFractionDigits: 0 }).format(
+        price,
+    );
+};

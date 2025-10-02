@@ -6,14 +6,28 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { services } from "@/lib/services-mock";
-import { getServicesTree } from "@/lib/utils";
+import type { ServiceType } from "@/lib/services-mock";
+import { formatPrice, getServicesTree } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 
-export default function ServicesAccordion() {
+export default function ServicesAccordion({
+    services,
+    error,
+}: {
+    services: ServiceType[];
+    error: string;
+}) {
     const selectedService = useZStore((state) => state.selectedService);
     const setSelectedService = useZStore((state) => state.setSelectedService);
+
+    if (error) {
+        return (
+            <div className="w-[80%] p-3 mx-auto sm:h-[375px] 2xl:h-[445px] flex flex-col items-center services-card-container">
+                Error: {error}
+            </div>
+        );
+    }
 
     const handleSelectService = (id: string) => {
         if (selectedService && selectedService === id) {
@@ -71,7 +85,7 @@ export default function ServicesAccordion() {
                                             />
                                         </div>
                                         <span className="text-base text-[#444] font-semibold text-balance w-[12ch] text-right">
-                                            $ {category.price}
+                                            $ {formatPrice(category.price)}
                                         </span>
                                     </div>
                                     <p className="text-xs text-[#444]/70 text-balance p-1 text-left">
