@@ -7,6 +7,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { services } from "@/lib/services-mock";
+import { getServicesTree } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 
@@ -22,6 +23,8 @@ export default function ServicesAccordion() {
         }
     };
 
+    const servicesTree = getServicesTree(services);
+
     return (
         <div className="w-[80%] p-3 mx-auto sm:h-[375px] 2xl:h-[445px] flex flex-col items-center services-card-container">
             <Accordion
@@ -30,7 +33,7 @@ export default function ServicesAccordion() {
                 className="w-full border-b border-[#444]/20"
                 defaultValue="item-1"
             >
-                {services.map((service) => (
+                {servicesTree.map((service) => (
                     <AccordionItem key={service.id} value={service.id}>
                         <AccordionTrigger>
                             <div className="relative">
@@ -57,7 +60,7 @@ export default function ServicesAccordion() {
                                 >
                                     <div className="flex justify-between items-center">
                                         <div className="w-full flex items-center gap-2">
-                                            <span className="">
+                                            <span className="text-left">
                                                 {category.subtitle}
                                             </span>
                                             <IconCheck

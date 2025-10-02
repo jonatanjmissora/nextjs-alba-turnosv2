@@ -4,3 +4,4 @@ links que no andan: redes sociales, leer mas,
 cambiar logo
 hacer responsive
 elegir colores
+zod
