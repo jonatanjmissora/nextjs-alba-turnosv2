@@ -4,38 +4,44 @@ import { type ReactNode, createContext, useRef, useContext } from "react";
 import { useStore } from "zustand";
 import { createStore, type StoreType } from "@/store/useZStore";
 
-export type StoreApi = ReturnType<typeof createStore>;
+type Store = ReturnType<typeof createStore>;
 
-export const StoreContext = createContext<StoreApi | undefined>(undefined);
+const StoreContext = createContext<Store | undefined>(undefined);
 
-export interface StoreProviderProps {
-  children: ReactNode;
-  // Aquí podrías pasar un estado inicial si lo necesitas
-  // initialStore?: Partial<ServicesStore>
+interface StoreProviderProps {
+    children: ReactNode;
+    initialState?: {
+        selectedService?: string;
+        selectedDate?: Date;
+        selectedTime?: string;
+        name?: string;
+        phone?: string;
+    };
 }
 
-export const ZustandProvider = ({ children }: StoreProviderProps) => {
-  const storeRef = useRef<StoreApi | null>(null);
+export const ZustandProvider = ({
+    children,
+    initialState = {},
+}: StoreProviderProps) => {
+    const storeRef = useRef<ReturnType<typeof createStore> | null>(null);
 
-  if (storeRef.current === null) {
-    storeRef.current = createStore();
-  }
+    if (!storeRef.current) {
+        storeRef.current = createStore(initialState);
+    }
 
-  return (
-    <StoreContext.Provider value={storeRef.current}>
-      {children}
-    </StoreContext.Provider>
-  );
-};
-
-export const useZStore = <T,>(selector: (store: StoreType) => T): T => {
-  const storeContext = useContext(StoreContext);
-
-  if (!storeContext) {
-    throw new Error(
-      "useServicesStore must be used within ServicesStoreProvider",
+    return (
+        <StoreContext.Provider value={storeRef.current}>
+            {children}
+        </StoreContext.Provider>
     );
-  }
-
-  return useStore(storeContext, selector);
 };
+
+export function useZStore<T>(selector: (state: StoreType) => T): T {
+    const store = useContext(StoreContext);
+
+    if (!store) {
+        throw new Error("useZStore must be used within ZustandProvider");
+    }
+
+    return useStore(store, selector);
+}

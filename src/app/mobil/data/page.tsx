@@ -65,8 +65,6 @@ export default function MobilDataPage() {
 const NameElement = () => {
     const name = useZStore((state) => state.name);
     const setName = useZStore((state) => state.setName);
-    const phone = useZStore((state) => state.phone);
-    const setCheckout = useZStore((state) => state.setCheckout);
 
     const [nombre, setNombre] = useState<string>(name || "");
 
@@ -74,12 +72,8 @@ const NameElement = () => {
         setNombre(e.target.value);
         if (e.target.value.length > 3) {
             setName(e.target.value);
-            if (phone && phone.length > 8) {
-                setCheckout(true);
-            }
         } else {
             setName(undefined);
-            setCheckout(false);
         }
     };
 
@@ -111,9 +105,7 @@ const NameElement = () => {
 
 const PhoneElement = () => {
     const phone = useZStore((state) => state.phone);
-    const name = useZStore((state) => state.name);
     const setPhone = useZStore((state) => state.setPhone);
-    const setCheckout = useZStore((state) => state.setCheckout);
 
     const [celular, setCelular] = useState<string>(phone || "");
 
@@ -121,12 +113,8 @@ const PhoneElement = () => {
         setCelular(e.target.value);
         if (e.target.value.length > 8) {
             setPhone(e.target.value);
-            if (name && name.length > 3) {
-                setCheckout(true);
-            }
         } else {
             setPhone(undefined);
-            setCheckout(false);
         }
     };
 

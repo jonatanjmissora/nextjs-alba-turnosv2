@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useZStore } from "@/store/zustand-provider";
 import { CheckIcon } from "lucide-react";
-import ConfirmBtn from "./ConfirmBtn";
+import ConfirmForm from "./ConfirmForm";
 
 export default function TimeLine() {
     const pathname = usePathname();
@@ -19,7 +19,6 @@ export default function TimeLine() {
     const setName = useZStore((state) => state.setName);
     const phone = useZStore((state) => state.phone);
     const setPhone = useZStore((state) => state.setPhone);
-    const setCheckout = useZStore((state) => state.setCheckout);
 
     const handleReset = () => {
         setSelectedService(undefined);
@@ -27,7 +26,6 @@ export default function TimeLine() {
         setSelectedTime(undefined);
         setName(undefined);
         setPhone(undefined);
-        setCheckout(false);
     };
 
     if (pathname === "/checkout") {
@@ -103,7 +101,8 @@ const NextButton = ({ pathname }: { pathname: string }) => {
     const selectedService = useZStore((state) => state.selectedService);
     const selectedDate = useZStore((state) => state.selectedDate);
     const selectedTime = useZStore((state) => state.selectedTime);
-    const checkout = useZStore((state) => state.checkout);
+    const name = useZStore((state) => state.name);
+    const phone = useZStore((state) => state.phone);
 
     let nextActive = false;
     if (
@@ -116,8 +115,15 @@ const NextButton = ({ pathname }: { pathname: string }) => {
     const nextHref = pathname === "/" ? "/calendar" : "/data";
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
 
-    if (checkout && pathname === "/data") {
-        return <ConfirmBtn />;
+    if (
+        selectedService &&
+        selectedDate &&
+        selectedTime &&
+        name &&
+        phone &&
+        pathname === "/data"
+    ) {
+        return <ConfirmForm />;
     }
 
     return (
