@@ -7,7 +7,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { services } from "@/lib/services-mock";
-import { useZStore } from "@/providers/zustand-provider";
+import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 
 export default function ServicesAccordion() {

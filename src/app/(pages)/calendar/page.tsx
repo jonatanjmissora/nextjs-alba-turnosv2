@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/shadcn-io/mini-calendar";
 import { IconCheck } from "@tabler/icons-react";
 import { timeRange } from "@/lib/time";
-import { useZStore } from "@/providers/zustand-provider";
+import { useZStore } from "@/store/zustand-provider";
 import ContentLayout from "@/app/_components/ContentLayout";
 
 export default function CalendarPage() {

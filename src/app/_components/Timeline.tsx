@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useZStore } from "@/providers/zustand-provider";
+import { useZStore } from "@/store/zustand-provider";
 import { CheckIcon } from "lucide-react";
+import ConfirmBtn from "./ConfirmBtn";
 
 export default function TimeLine() {
     const pathname = usePathname();
@@ -116,14 +117,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
 
     if (checkout && pathname === "/data") {
-        return (
-            <Link
-                href="/checkout"
-                className={`animate-bounce w-[14ch] text-center py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.35)] bg-[#ff8000]/70`}
-            >
-                CONFIRMAR
-            </Link>
-        );
+        return <ConfirmBtn />;
     }
 
     return (

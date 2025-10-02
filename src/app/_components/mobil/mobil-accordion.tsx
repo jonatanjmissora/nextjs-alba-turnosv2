@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { type CategoryType, services } from "@/lib/services-mock";
 import { IconCheck } from "@tabler/icons-react";
-import { useZStore } from "@/providers/zustand-provider";
+import { useZStore } from "@/store/zustand-provider";
 
 export default function MobilAccordion() {
     const selectedService = useZStore((state) => state.selectedService);

@@ -3,7 +3,7 @@
 import MobilLayout from "@/app/_components/mobil/mobil-layout";
 import { services } from "@/lib/services-mock";
 import { getServiceData } from "@/lib/utils";
-import { useZStore } from "@/providers/zustand-provider";
+import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
 

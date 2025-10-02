@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/shadcn-io/mini-calendar";
 import { IconCheck } from "@tabler/icons-react";
 import { timeRange } from "@/lib/time";
-import { useZStore } from "@/providers/zustand-provider";
+import { useZStore } from "@/store/zustand-provider";
 import MobilLayout from "@/app/_components/mobil/mobil-layout";
 
 export default function MobilCalendarPage() {
