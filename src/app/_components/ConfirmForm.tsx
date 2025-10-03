@@ -21,7 +21,7 @@ export default function ConfirmForm() {
         if (selectedService && selectedDate && selectedTime && name && phone) {
             const { data, error } = await addTurnoAction(
                 selectedService,
-                selectedDate.toISOString(),
+                selectedDate.toISOString().split("T")[0],
                 selectedTime,
                 name,
                 phone,

@@ -2,6 +2,21 @@
 
 import { supabase } from "@/db/server";
 
+export const getAllTurnosAction = async () => {
+    try {
+        const res = await supabase.from("turnos_alba").select();
+
+        if (res.error) {
+            console.error("Error getting turnos:", res.error);
+            throw new Error("Error getting turnos");
+        }
+        console.log("Turnos fetched successfully!!");
+        return res;
+    } catch (error) {
+        console.error("Error getting turnos:", error);
+        return { data: [], error };
+    }
+};
 
 export const addTurnoAction = async (
     service: number,
@@ -11,8 +26,10 @@ export const addTurnoAction = async (
     phone: string,
 ) => {
     try {
-
-        const id = Number(date.substring(0, 10).replaceAll("-", "") + time.substring(0, 5).replace(":", ""))
+        const id = Number(
+            date.substring(0, 10).replaceAll("-", "") +
+                time.substring(0, 5).replace(":", ""),
+        );
 
         const newTurno = {
             id: id,
@@ -21,8 +38,7 @@ export const addTurnoAction = async (
             hora: time,
             nombre: name,
             telefono: phone,
-            user_id: process.env.NEXT_PUBLIC_SUPABASE_USER_ID,
-        }
+        };
 
         const res = await supabase
             .from("turnos_alba")
@@ -37,6 +53,27 @@ export const addTurnoAction = async (
         return res;
     } catch (error) {
         console.error("Error adding turno:", error);
+        return { data: [], error };
+    }
+};
+
+export const deleteTurnoAction = async (id: number) => {
+    try {
+        const res = await supabase
+            .from("turnos_alba")
+            .delete()
+            .eq("id", id)
+            .select();
+
+        console.log("Turno ***********************:", res);
+        if (res.error) {
+            console.error("Error deleting turno:", res.error);
+            throw new Error("Error deleting turno");
+        }
+        console.log("Turno deleted successfully:", res);
+        return res;
+    } catch (error) {
+        console.error("Error deleting turno:", error);
         return { data: [], error };
     }
 };

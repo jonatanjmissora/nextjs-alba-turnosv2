@@ -6,14 +6,23 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { type CategoryType, services } from "@/lib/services-mock";
+import { ServiceType, type CategoryType } from "@/lib/services-mock";
 import { IconCheck } from "@tabler/icons-react";
 import { useZStore } from "@/store/zustand-provider";
 import { formatPrice, getServicesTree } from "@/lib/utils";
 
-export default function MobilAccordion() {
+export default function MobilAccordion({ services, error }: { services: ServiceType[]; error: string }) {
     const selectedService = useZStore((state) => state.selectedService);
     const servicesTree = getServicesTree(services);
+
+    if (error) {
+        return (
+            <div className="w-[80%] p-3 mx-auto sm:h-[375px] 2xl:h-[445px] flex flex-col items-center services-card-container">
+                Error: {error}
+            </div>
+        );
+    }
+
     return (
         <div className="w-[95%] p-3 mx-auto flex flex-col items-center">
             <h2 className="w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8">
@@ -27,7 +36,7 @@ export default function MobilAccordion() {
                 defaultValue="item-1"
             >
                 {servicesTree.map((service) => (
-                    <AccordionItem key={service.id} value={service.id}>
+                    <AccordionItem key={service.id} value={service.id.toString()}>
                         <AccordionTrigger>
                             <div className="relative">
                                 <span className="font-semibold tracking-wide hover:tracking-widest duration-300 text-[#444]">
@@ -37,7 +46,7 @@ export default function MobilAccordion() {
                                     stroke={3}
                                     size={40}
                                     color="#ff8000"
-                                    className={`absolute -top-2 left-[110%] ${selectedService && selectedService[0] === service.id ? "block" : "hidden"}`}
+                                    className={`absolute -top-2 left-[110%] ${selectedService && selectedService === service.id ? "block" : "hidden"}`}
                                 />
                             </div>
                         </AccordionTrigger>
@@ -60,7 +69,7 @@ const MovilServiceCard = ({ category }: { category: CategoryType }) => {
     const selectedService = useZStore((state) => state.selectedService);
     const setSelectedService = useZStore((state) => state.setSelectedService);
 
-    const handleSelectService = (id: string) => {
+    const handleSelectService = (id: number) => {
         if (selectedService && selectedService === id) {
             setSelectedService(undefined);
         } else {

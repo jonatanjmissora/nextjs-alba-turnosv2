@@ -1,6 +1,5 @@
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -9,14 +8,29 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import DeleteBtn from "./admin/DeleteBtn";
+import { useState } from "react";
+import { deleteTurnoAction } from "../_actions/turno-actions";
 
 export function AlertDialogComponent({
     children,
+    turnoId,
 }: {
     children: React.ReactNode;
+    turnoId: number;
 }) {
+    const [open, setOpen] = useState(false);
+
+    const handleDelete = async () => {
+        if (turnoId) {
+            const res = await deleteTurnoAction(turnoId);
+            console.log("RES", res);
+            setOpen(false);
+        } else return;
+    };
+
     return (
-        <AlertDialog>
+        <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger
                 asChild
                 className="cursor-pointer h-full w-full p-2 2xl:p-4"
@@ -34,14 +48,9 @@ export function AlertDialogComponent({
                     <AlertDialogCancel className="tracking-wider font-semibold bg-pink-50/80">
                         Cancelar
                     </AlertDialogCancel>
-                    <AlertDialogAction
-                        className="tracking-wider font-semibold bg-black/80 shadow"
-                        onClick={() => {
-                            console.log("SIIIIIIIIIIIII");
-                        }}
-                    >
-                        Confirmar
-                    </AlertDialogAction>
+                    <form action={handleDelete}>
+                        <DeleteBtn />
+                    </form>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

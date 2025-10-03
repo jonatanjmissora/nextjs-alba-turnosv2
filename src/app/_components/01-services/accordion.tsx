@@ -29,7 +29,7 @@ export default function ServicesAccordion({
         );
     }
 
-    const handleSelectService = (id: string) => {
+    const handleSelectService = (id: number) => {
         if (selectedService && selectedService === id) {
             setSelectedService(undefined);
         } else {
@@ -48,7 +48,7 @@ export default function ServicesAccordion({
                 defaultValue="item-1"
             >
                 {servicesTree.map((service) => (
-                    <AccordionItem key={service.id} value={service.id}>
+                    <AccordionItem key={service.id} value={service.id.toString()}>
                         <AccordionTrigger>
                             <div className="relative">
                                 <span className="font-semibold tracking-wide hover:tracking-widest duration-300 text-[#444]">
@@ -58,7 +58,7 @@ export default function ServicesAccordion({
                                     stroke={3}
                                     size={40}
                                     color="#ff8000"
-                                    className={`absolute -top-2 left-[110%] ${selectedService && selectedService[0] === service.id ? "block" : "hidden"}`}
+                                    className={`absolute -top-2 left-[110%] ${selectedService && selectedService === service.id ? "block" : "hidden"}`}
                                 />
                             </div>
                         </AccordionTrigger>

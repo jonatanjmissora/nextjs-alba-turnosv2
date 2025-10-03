@@ -5,3 +5,4 @@ cambiar logo
 hacer responsive
 elegir colores
 zod
+react query
