@@ -31,7 +31,6 @@ export default function ConfirmForm() {
                 setError("Intente de nuevo");
                 return;
             }
-            console.log(data);
             router.replace(
                 pathname === "/mobil/data" ? "/mobil/checkout" : "/checkout",
             );

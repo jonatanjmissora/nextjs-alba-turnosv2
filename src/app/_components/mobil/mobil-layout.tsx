@@ -24,20 +24,22 @@ export default function MobilLayout({
 const ImageBGLayout = () => {
     return (
         <>
-            <div className="absolute top-4 right-4 rounded-full overflow-hidden shadow-[3px_3px_6px_0px_rgba(0,0,0,0.5)]">
+            <div className="absolute top-4 right-4 rounded-full overflow-hidden shadow-[3px_3px_6px_0px_rgba(0,0,0,0.5)] size-[100px]">
                 <Image
                     src="/logo.webp"
                     alt="services"
-                    width={100}
-                    height={100}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>
-            <div className="absolute -bottom-18 -left-1 z-10">
+            <div className="absolute -bottom-18 -left-1 z-10 w-[200px] h-[300px]">
                 <Image
                     src="/alba-alpha.png"
                     alt="services"
-                    width={200}
-                    height={300}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>
         </>

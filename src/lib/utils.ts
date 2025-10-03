@@ -11,15 +11,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getServiceData(
-    selectedService: string | undefined,
+    selectedService: number | undefined,
     services: ServiceType[],
 ) {
     if (!selectedService) return { serviceTitle: "", servicePrice: "" };
-
-    const serviceObj = services.find(
-        (service) => service.id === selectedService,
-    );
-    if (serviceObj) {
+    
+    const serviceObj = services.find(service => service.id === selectedService)
+    if(serviceObj) {
         return {
             serviceTitle: serviceObj.title,
             servicePrice: serviceObj.price,
@@ -34,14 +32,11 @@ export const getDayOfTheWeek = (date: Date) => {
 };
 
 export function getServicesTree(services: ServiceType[]): ServiceTreeType[] {
-    // Create a map to group services by their title
+    // First pass: create a map of titles to their categories
     const servicesMap = new Map<string, CategoryType[]>();
 
-    // First pass: group all services by their title
     services.forEach((service) => {
-        const { id, title, subtitle, price, description } = service;
-
-        // Create the category object
+        const { title, id, subtitle, price, description } = service;
         const category: CategoryType = {
             id,
             subtitle,
@@ -61,8 +56,8 @@ export function getServicesTree(services: ServiceType[]): ServiceTreeType[] {
     const processedTitles = new Set<string>();
 
     services.forEach((service) => {
-        const { title } = service;
-        const mainId = service.id.length >= 2 ? service.id[0] : service.id;
+        const { title, id } = service;
+        const mainId = Math.floor(id / 10); // Get the first digit(s) for main ID
 
         // Skip if we've already processed this title
         if (processedTitles.has(title)) return;
