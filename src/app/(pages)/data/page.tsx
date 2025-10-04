@@ -1,6 +1,6 @@
 "use client";
 
-import ContentLayout from "@/app/_components/ContentLayout";
+import ContentLayout from "@/app/_components/layouts/ContentLayout";
 import { services } from "@/lib/types";
 import { getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";

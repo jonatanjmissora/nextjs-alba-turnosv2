@@ -4,7 +4,9 @@ import type {
     CategoryType,
     ServiceTreeType,
     ServiceType,
-} from "./services-mock";
+    TurnoType,
+} from "./types";
+import { timeRange } from "./time";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -15,9 +17,11 @@ export function getServiceData(
     services: ServiceType[],
 ) {
     if (!selectedService) return { serviceTitle: "", servicePrice: "" };
-    
-    const serviceObj = services.find(service => service.id === selectedService)
-    if(serviceObj) {
+
+    const serviceObj = services.find(
+        (service) => service.id === selectedService,
+    );
+    if (serviceObj) {
         return {
             serviceTitle: serviceObj.title,
             servicePrice: serviceObj.price,
@@ -82,4 +86,16 @@ export const formatPrice = (price: number) => {
     return new Intl.NumberFormat("de-DE", { minimumFractionDigits: 0 }).format(
         price,
     );
+};
+
+export const getTimeRangeForSelecteDate = (
+    selectedDate: Date,
+    turnos: TurnoType[],
+): string[] => {
+    const selectedDateTurnosTime = turnos
+        .filter(
+            (turno) => turno.fecha === selectedDate.toISOString().split("T")[0],
+        )
+        .map((turno) => turno.hora);
+    return timeRange.filter((hora) => !selectedDateTurnosTime.includes(hora));
 };

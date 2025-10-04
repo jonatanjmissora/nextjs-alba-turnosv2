@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useZStore } from "@/store/zustand-provider";
 import { CheckIcon } from "lucide-react";
-import ConfirmForm from "./ConfirmForm";
+import ConfirmForm from "../03-data/ConfirmForm";
 
-export default function TimeLine() {
+export default function MobilTimeLine() {
     const pathname = usePathname();
 
     const selectedService = useZStore((state) => state.selectedService);
@@ -28,12 +28,12 @@ export default function TimeLine() {
         setPhone(undefined);
     };
 
-    if (pathname === "/checkout") {
+    if (pathname === "/mobil/checkout") {
         return (
-            <article className="w-full flex justify-end px-20 items-center h-16 bg-[#ffbdc8] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.2)]">
+            <article className="w-full flex justify-center items-center h-16 bg-[#ffbdc8] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.2)]">
                 <button type="button" className="p-0 m-0" onClick={handleReset}>
                     <Link
-                        href="/"
+                        href="/mobil"
                         className="p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow bg-pink-50"
                     >
                         VOLVER
@@ -74,8 +74,9 @@ export default function TimeLine() {
 }
 
 const PrevButton = ({ pathname }: { pathname: string }) => {
-    const prevActive = pathname !== "/";
-    const prevHref = pathname === "/calendar" ? "/" : "/calendar";
+    const prevActive = pathname !== "/mobil";
+    const prevHref =
+        pathname === "/mobil/calendar" ? "/mobil" : "/mobil/calendar";
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
     return (
         <>
@@ -88,7 +89,7 @@ const PrevButton = ({ pathname }: { pathname: string }) => {
                 </Link>
             ) : (
                 <span
-                    className={`w-[14ch] text-center  p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow`}
+                    className={`w-[14ch] text-center p-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow`}
                 >
                     ATRAS
                 </span>
@@ -106,13 +107,13 @@ const NextButton = ({ pathname }: { pathname: string }) => {
 
     let nextActive = false;
     if (
-        (pathname === "/" && selectedService) ||
-        (pathname === "/calendar" && selectedDate && selectedTime)
+        (pathname === "/mobil" && selectedService) ||
+        (pathname === "/mobil/calendar" && selectedDate && selectedTime)
     ) {
         nextActive = true;
     }
 
-    const nextHref = pathname === "/" ? "/calendar" : "/data";
+    const nextHref = pathname === "/mobil" ? "/mobil/calendar" : "/mobil/data";
     const activeColor = "bg-pink-200 shadow-[0px_0px_6px_0px_rgba(0,0,0,0.5)]";
 
     if (
@@ -121,14 +122,14 @@ const NextButton = ({ pathname }: { pathname: string }) => {
         selectedTime &&
         name &&
         phone &&
-        pathname === "/data"
+        pathname === "/mobil/data"
     ) {
         return <ConfirmForm />;
     }
 
     return (
         <>
-            {nextActive && pathname !== "/data" ? (
+            {nextActive && pathname !== "/mobil/data" ? (
                 <Link
                     className={`w-[14ch] text-center  py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow ${activeColor}`}
                     href={nextHref}
@@ -139,7 +140,7 @@ const NextButton = ({ pathname }: { pathname: string }) => {
                 <span
                     className={`w-[14ch] text-center  py-2 rounded text-xs text-[#444] tracking-wider font-medium border border-[#444]/50 shadow`}
                 >
-                    {pathname === "/data" ? "CONFIRMAR" : "SIGUIENTE"}
+                    {pathname === "/mobil/data" ? "CONFIRMAR" : "SIGUIENTE"}
                 </span>
             )}
         </>

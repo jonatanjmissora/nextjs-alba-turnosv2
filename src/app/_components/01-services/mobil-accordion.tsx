@@ -6,35 +6,22 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ServiceType, type CategoryType } from "@/lib/types";
+import type { CategoryType, ServiceType } from "@/lib/types";
 import { IconCheck } from "@tabler/icons-react";
 import { useZStore } from "@/store/zustand-provider";
 import { formatPrice, getServicesTree } from "@/lib/utils";
 
 export default function MobilAccordion({
     services,
-    error,
 }: {
     services: ServiceType[];
-    error: string;
 }) {
     const selectedService = useZStore((state) => state.selectedService);
+    const setSelectedService = useZStore((state) => state.setSelectedService);
     const servicesTree = getServicesTree(services);
 
-    if (error) {
-        return (
-            <div className="w-[80%] p-3 mx-auto sm:h-[375px] 2xl:h-[445px] flex flex-col items-center services-card-container">
-                Error: {error}
-            </div>
-        );
-    }
-
     return (
-        <div className="w-[95%] p-3 mx-auto flex flex-col items-center">
-            <h2 className="w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8">
-                Selecciona un servicio
-            </h2>
-
+        <div className="w-[95%] min-h-[50dvh] p-3 mx-auto flex flex-col items-center">
             <Accordion
                 type="single"
                 collapsible
@@ -64,6 +51,8 @@ export default function MobilAccordion({
                                 <MovilServiceCard
                                     key={category.id}
                                     category={category}
+                                    selectedService={selectedService}
+                                    setSelectedService={setSelectedService}
                                 />
                             ))}
                         </AccordionContent>
@@ -74,10 +63,15 @@ export default function MobilAccordion({
     );
 }
 
-const MovilServiceCard = ({ category }: { category: CategoryType }) => {
-    const selectedService = useZStore((state) => state.selectedService);
-    const setSelectedService = useZStore((state) => state.setSelectedService);
-
+const MovilServiceCard = ({
+    category,
+    selectedService,
+    setSelectedService,
+}: {
+    category: CategoryType;
+    selectedService: number | undefined;
+    setSelectedService: (id: number | undefined) => void;
+}) => {
     const handleSelectService = (id: number) => {
         if (selectedService && selectedService === id) {
             setSelectedService(undefined);

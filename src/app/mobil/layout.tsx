@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { ZustandProvider } from "@/store/zustand-provider";
+import { TanstackProvider } from "@/lib/tanstack-provider";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -38,7 +39,7 @@ export default function RootLayout({
 
                 <ZustandProvider>
                     <main className="w-screen flex-1 flex flex-col items-center justify-center my-6">
-                        {children}
+                        <TanstackProvider>{children}</TanstackProvider>
                     </main>
                 </ZustandProvider>
             </body>

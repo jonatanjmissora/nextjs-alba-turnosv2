@@ -1,6 +1,6 @@
 "use client";
 
-import MobilLayout from "@/app/_components/mobil/mobil-layout";
+import MobilLayout from "@/app/_components/layouts/mobil-layout";
 import { services } from "@/lib/types";
 import { getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";

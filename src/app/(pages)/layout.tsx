@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { ZustandProvider } from "@/store/zustand-provider";
 import Aside from "../_components/Aside";
-import TimeLine from "../_components/Timeline";
+import TimeLine from "../_components/timeline/Timeline";
+import { TanstackProvider } from "@/lib/tanstack-provider";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -44,7 +45,9 @@ export default function RootLayout({
                             <div className="w-full h-full flex">
                                 <Aside />
                                 <div className="w-2/3 flex flex-col">
-                                    {children}
+                                    <TanstackProvider>
+                                        {children}
+                                    </TanstackProvider>
                                     <TimeLine />
                                 </div>
                             </div>

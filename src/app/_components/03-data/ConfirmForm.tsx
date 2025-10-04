@@ -4,7 +4,7 @@ import { useZStore } from "@/store/zustand-provider";
 import { useState } from "react";
 import SubmitBtn from "./SubmitBtn";
 import { useRouter, usePathname } from "next/navigation";
-import { addTurnoAction } from "../_actions/turno-actions";
+import { addTurnoAction } from "../../_actions/turno-actions";
 
 export default function ConfirmForm() {
     const selectedService = useZStore((state) => state.selectedService);

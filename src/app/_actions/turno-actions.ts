@@ -2,23 +2,24 @@
 
 import { supabase } from "@/db/server";
 import { revalidatePath } from "next/cache";
+import type { TurnoType } from "@/lib/types";
 
-export const getAllTurnosAction = async () => {
+export const getAllTurnosAction = async (): Promise<TurnoType[]> => {
     try {
-        const res = await supabase
+        const { data, error } = await supabase
             .from("turnos_alba")
             .select("*, servicios (*)");
 
-        if (res.error) {
-            console.error("Error getting turnos:", res.error);
+        if (error) {
+            console.error("Error getting turnos:", error);
             throw new Error("Error getting turnos");
         }
 
         console.log("Turnos fetched successfully!!");
-        return res;
+        return data;
     } catch (error) {
         console.error("Error getting turnos:", error);
-        return { data: [], error };
+        return [];
     }
 };
 

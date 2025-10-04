@@ -1,14 +1,20 @@
 import Image from "next/image";
-import MobilTimeLine from "./mobil-timeline";
+import MobilTimeLine from "../timeline/mobil-timeline";
 
 export default function MobilLayout({
+    title,
     children,
 }: {
+    title: string;
     children: React.ReactNode;
 }) {
     return (
         <div className="w-[95%] rounded-lg flex flex-col bg-gradient-to-b from-pink-100 via-[#FADBE0] to-[#ffc0cb] shadow-[6px_6px_10px_3px_rgba(0,0,0,0.15)] overflow-hidden relative pt-22 pb-52">
             <ImageBGLayout />
+
+            <h2 className="px-3 w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8">
+                {title}
+            </h2>
 
             {children}
 
