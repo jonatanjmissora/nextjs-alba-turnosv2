@@ -1,16 +1,18 @@
 "use client";
 
 import MobilLayout from "@/app/_components/layouts/mobil-layout";
-import { services } from "@/lib/types";
-import { getServiceData } from "@/lib/utils";
+import { formatPrice, getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
+import { useServices } from "@/lib/services-query";
 
 export default function MobilDataPage() {
     const selectedService = useZStore((state) => state.selectedService);
     const selectedDate = useZStore((state) => state.selectedDate);
     const selectedTime = useZStore((state) => state.selectedTime);
+
+    const { services } = useServices();
 
     const { serviceTitle, servicePrice } = getServiceData(
         selectedService,
@@ -18,29 +20,24 @@ export default function MobilDataPage() {
     );
 
     return (
-        <MobilLayout>
+        <MobilLayout title="Completar datos personales">
             <section className="flex-1 flex flex-col gap-12 items-center mx-auto w-[90%] min-h-[40vh]">
-                <div className="w-full flex flex-col items-center">
-                    <h2 className="w-full text-left text-xl font-semibold tracking-wider text-[#444] mb-8 relative z-10">
-                        Completar datos personales
-                    </h2>
-                    <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center">
-                        <NameElement />
+                <div className="grid grid-cols-[1fr_2.5fr] gap-2 items-center">
+                    <NameElement />
 
-                        <PhoneElement />
+                    <PhoneElement />
 
-                        <span className="text-[#444]">servicio :</span>
-                        <span>{serviceTitle || ""}</span>
+                    <span className="text-[#444]">servicio :</span>
+                    <span>{serviceTitle || ""}</span>
 
-                        <span className="text-[#444]">fecha :</span>
-                        <span>{selectedDate?.toLocaleDateString() || ""}</span>
+                    <span className="text-[#444]">fecha :</span>
+                    <span>{selectedDate?.toLocaleDateString() || ""}</span>
 
-                        <span className="text-[#444]">hora :</span>
-                        <span>{selectedTime || ""} hs</span>
+                    <span className="text-[#444]">hora :</span>
+                    <span>{selectedTime || ""} hs</span>
 
-                        <span className="text-[#444]">valor :</span>
-                        <span>$ {servicePrice || ""}</span>
-                    </div>
+                    <span className="text-[#444]">valor :</span>
+                    <span>$ {formatPrice(servicePrice) || 0}</span>
                 </div>
 
                 <div className="flex flex-col gap-2 text-xs text-[#444]/80 justify-center items-center w-full mx-auto text-center">

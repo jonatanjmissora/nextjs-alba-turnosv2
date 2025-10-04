@@ -16,7 +16,7 @@ export function getServiceData(
     selectedService: number | undefined,
     services: ServiceType[],
 ) {
-    if (!selectedService) return { serviceTitle: "", servicePrice: "" };
+    if (!selectedService) return { serviceTitle: "", servicePrice: 0 };
 
     const serviceObj = services.find(
         (service) => service.id === selectedService,
@@ -27,7 +27,7 @@ export function getServiceData(
             servicePrice: serviceObj.price,
         };
     }
-    return { serviceTitle: "", servicePrice: "" };
+    return { serviceTitle: "", servicePrice: 0 };
 }
 
 export const getDayOfTheWeek = (date: Date) => {

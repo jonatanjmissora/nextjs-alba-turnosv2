@@ -1,6 +1,7 @@
 "use client";
 
-import { getServiceData } from "@/lib/utils";
+import { useServices } from "@/lib/services-query";
+import { formatPrice, getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
@@ -9,6 +10,8 @@ export default function CheckoutPage() {
     const selectedService = useZStore((state) => state.selectedService);
     const selectedDate = useZStore((state) => state.selectedDate);
     const selectedTime = useZStore((state) => state.selectedTime);
+
+    const { services } = useServices();
 
     const { serviceTitle, servicePrice } = getServiceData(
         selectedService,
@@ -40,7 +43,7 @@ export default function CheckoutPage() {
 
                     <span className="text-[#444]">precio :</span>
                     <span className="text-base">
-                        $ {servicePrice ? servicePrice : ""}
+                        $ {servicePrice ? formatPrice(servicePrice) : 0}
                     </span>
                 </div>
             </div>

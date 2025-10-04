@@ -1,8 +1,8 @@
 "use client";
 
 import ContentLayout from "@/app/_components/layouts/ContentLayout";
-import { services } from "@/lib/types";
-import { getServiceData } from "@/lib/utils";
+import { useServices } from "@/lib/services-query";
+import { formatPrice, getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
@@ -11,6 +11,8 @@ export default function DataPage() {
     const selectedService = useZStore((state) => state.selectedService);
     const selectedDate = useZStore((state) => state.selectedDate);
     const selectedTime = useZStore((state) => state.selectedTime);
+
+    const { services } = useServices();
 
     const { serviceTitle, servicePrice } = getServiceData(
         selectedService,
@@ -35,7 +37,7 @@ export default function DataPage() {
                     <span>{selectedTime || ""} hs</span>
 
                     <span className="text-[#444]">valor :</span>
-                    <span>$ {servicePrice || ""}</span>
+                    <span>$ {formatPrice(servicePrice) || 0}</span>
                 </div>
             </div>
 

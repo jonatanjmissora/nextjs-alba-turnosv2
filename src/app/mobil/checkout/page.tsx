@@ -1,8 +1,8 @@
 "use client";
 
 import MobilLayout from "@/app/_components/layouts/mobil-layout";
-import { services } from "@/lib/types";
-import { getServiceData } from "@/lib/utils";
+import { useServices } from "@/lib/services-query";
+import { formatPrice, getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
@@ -12,6 +12,8 @@ export default function MobilCheckoutPage() {
     const selectedDate = useZStore((state) => state.selectedDate);
     const selectedTime = useZStore((state) => state.selectedTime);
 
+    const { services } = useServices();
+
     const { serviceTitle, servicePrice } = getServiceData(
         selectedService,
         services,
@@ -19,7 +21,7 @@ export default function MobilCheckoutPage() {
     const { width, height } = useWindowSize();
 
     return (
-        <MobilLayout>
+        <MobilLayout title="">
             <section className="flex-1 w-full mx-auto h-[500px] p-2 flex flex-col justify-center gap-12 items-center">
                 <h2 className="text-xl sm:text-lg 2xl:text-xl text-[#444] p-8 py-4 border border-[#444]/20 shadow-lg bg-pink-50 rounded-lg font-semibold tracking-wider w-full text-center text-balance">
                     ¡¡ Tu turno ha sido confirmado !!
@@ -45,7 +47,7 @@ export default function MobilCheckoutPage() {
 
                         <span className="text-[#444]">valor :</span>
                         <span className="text-base">
-                            $ {servicePrice || ""}
+                            $ {formatPrice(servicePrice) || 0}
                         </span>
                     </div>
                 </div>
