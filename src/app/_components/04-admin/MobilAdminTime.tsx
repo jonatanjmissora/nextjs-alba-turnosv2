@@ -20,7 +20,7 @@ export const MobilAdminTime = ({
     );
 
     return (
-        <article className="w-full border border-[#444]/20  shadow bg-pink-100 p-2 rounded-lg">
+        <article className="w-full border border-[#444]/20 shadow bg-pink-100 p-2 rounded-lg">
             {timeRange.map((hora) => (
                 <Turno
                     key={hora}
@@ -55,7 +55,7 @@ const Turno = ({
             {turno ? (
                 <div className="w-[80%] h-[64px] p-2 px-4 border-l border-[#444]/20  flex flex-col justify-center items-center relative">
                     <span className="font-semibold tracking-wider text-[#444]">
-                        {turno.servicio}
+                        {turno.servicios.admin_desc}
                     </span>
                     <span className="text-[#444]/85">{turno.nombre}</span>
                     {selected && (

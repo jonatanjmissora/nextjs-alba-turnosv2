@@ -5,7 +5,7 @@ import {
     MiniCalendarNavigation,
 } from "@/components/ui/shadcn-io/mini-calendar";
 
-export const MobilAdminContent = ({
+export const MobilAdminMiniCalendar = ({
     selectedAdminDate,
     setSelectedAdminDate,
 }: {

@@ -8,7 +8,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import DeleteBtn from "./admin/DeleteBtn";
+import DeleteBtn from "./DeleteBtn";
 import { useState } from "react";
 import { deleteTurnoAction } from "../_actions/turno-actions";
 
