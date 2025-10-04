@@ -6,7 +6,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { ServiceType } from "@/lib/services-mock";
+import type { ServiceType } from "@/lib/types";
 import { formatPrice, getServicesTree } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import { IconCheck } from "@tabler/icons-react";
@@ -48,7 +48,10 @@ export default function ServicesAccordion({
                 defaultValue="item-1"
             >
                 {servicesTree.map((service) => (
-                    <AccordionItem key={service.id} value={service.id.toString()}>
+                    <AccordionItem
+                        key={service.id}
+                        value={service.id.toString()}
+                    >
                         <AccordionTrigger>
                             <div className="relative">
                                 <span className="font-semibold tracking-wide hover:tracking-widest duration-300 text-[#444]">

@@ -1,6 +1,6 @@
 "use client";
 
-import { services } from "@/lib/services-mock";
+import { services } from "@/lib/types";
 import { getServiceData } from "@/lib/utils";
 import { useZStore } from "@/store/zustand-provider";
 import Confetti from "react-confetti";

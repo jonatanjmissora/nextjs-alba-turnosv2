@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminMiniCalendar from "./AdminMiniCalendar";
 import TurnosContainer from "./TurnosContainer";
-import type { TurnoType } from "@/lib/turnos-mock";
+import type { TurnoType } from "@/lib/types";
 
 export default function AdminPage({
     turnos,

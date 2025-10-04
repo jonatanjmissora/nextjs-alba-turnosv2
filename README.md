@@ -6,3 +6,4 @@ hacer responsive
 elegir colores
 zod
 react query
+quitar los horarios ya con turnos

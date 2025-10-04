@@ -1,4 +1,4 @@
-import type { TurnoType } from "@/lib/turnos-mock";
+import type { TurnoType } from "@/lib/types";
 import AdminContainer from "../_components/admin/AdminContainer";
 import { getAllTurnosAction } from "../_actions/turno-actions";
 

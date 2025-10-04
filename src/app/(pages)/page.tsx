@@ -1,4 +1,4 @@
-import type { ServiceType } from "@/lib/services-mock";
+import type { ServiceType } from "@/lib/types";
 import { getAllServicesAction } from "../_actions/service-actions";
 import ServicesAccordion from "../_components/01-services/accordion";
 import ContentLayout from "../_components/ContentLayout";

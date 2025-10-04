@@ -5,7 +5,9 @@ import { revalidatePath } from "next/cache";
 
 export const getAllTurnosAction = async () => {
     try {
-        const res = await supabase.from("turnos_alba").select();
+        const res = await supabase
+            .from("turnos_alba")
+            .select("*, servicios (*)");
 
         if (res.error) {
             console.error("Error getting turnos:", res.error);

@@ -15,17 +15,19 @@ import { deleteTurnoAction } from "../_actions/turno-actions";
 export function AlertDialogComponent({
     children,
     turnoId,
+    setSelected,
 }: {
     children: React.ReactNode;
     turnoId: number;
+    setSelected: (selected: boolean) => void;
 }) {
     const [open, setOpen] = useState(false);
 
     const handleDelete = async () => {
         if (turnoId) {
-            const res = await deleteTurnoAction(turnoId);
-            console.log("RES", res);
+            await deleteTurnoAction(turnoId);
             setOpen(false);
+            setSelected(false);
         } else return;
     };
 

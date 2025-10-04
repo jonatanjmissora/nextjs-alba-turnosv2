@@ -7,7 +7,7 @@ import {
     MiniCalendarNavigation,
 } from "@/components/ui/shadcn-io/mini-calendar";
 import { timeRange } from "@/lib/time";
-import { turnosmock, type TurnoType } from "@/lib/turnos-mock";
+import { turnosmock, type TurnoType } from "@/lib/types";
 import { PlusIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";

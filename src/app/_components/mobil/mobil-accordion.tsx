@@ -6,12 +6,18 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ServiceType, type CategoryType } from "@/lib/services-mock";
+import { ServiceType, type CategoryType } from "@/lib/types";
 import { IconCheck } from "@tabler/icons-react";
 import { useZStore } from "@/store/zustand-provider";
 import { formatPrice, getServicesTree } from "@/lib/utils";
 
-export default function MobilAccordion({ services, error }: { services: ServiceType[]; error: string }) {
+export default function MobilAccordion({
+    services,
+    error,
+}: {
+    services: ServiceType[];
+    error: string;
+}) {
     const selectedService = useZStore((state) => state.selectedService);
     const servicesTree = getServicesTree(services);
 
@@ -36,7 +42,10 @@ export default function MobilAccordion({ services, error }: { services: ServiceT
                 defaultValue="item-1"
             >
                 {servicesTree.map((service) => (
-                    <AccordionItem key={service.id} value={service.id.toString()}>
+                    <AccordionItem
+                        key={service.id}
+                        value={service.id.toString()}
+                    >
                         <AccordionTrigger>
                             <div className="relative">
                                 <span className="font-semibold tracking-wide hover:tracking-widest duration-300 text-[#444]">
