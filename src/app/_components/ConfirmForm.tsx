@@ -19,7 +19,7 @@ export default function ConfirmForm() {
 
     const handleConfirm = async () => {
         if (selectedService && selectedDate && selectedTime && name && phone) {
-            const { data, error } = await addTurnoAction(
+            const { error } = await addTurnoAction(
                 selectedService,
                 selectedDate.toISOString().split("T")[0],
                 selectedTime,

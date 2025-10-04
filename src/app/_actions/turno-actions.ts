@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/db/server";
+import { revalidatePath } from "next/cache";
 
 export const getAllTurnosAction = async () => {
     try {
@@ -10,6 +11,7 @@ export const getAllTurnosAction = async () => {
             console.error("Error getting turnos:", res.error);
             throw new Error("Error getting turnos");
         }
+
         console.log("Turnos fetched successfully!!");
         return res;
     } catch (error) {
@@ -65,12 +67,12 @@ export const deleteTurnoAction = async (id: number) => {
             .eq("id", id)
             .select();
 
-        console.log("Turno ***********************:", res);
         if (res.error) {
             console.error("Error deleting turno:", res.error);
             throw new Error("Error deleting turno");
         }
         console.log("Turno deleted successfully:", res);
+        revalidatePath("/admin");
         return res;
     } catch (error) {
         console.error("Error deleting turno:", error);
