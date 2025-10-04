@@ -5,5 +5,5 @@ cambiar logo
 hacer responsive
 elegir colores
 zod
-react query
-quitar los horarios ya con turnos
+ver el layout cuando hago el loading, que no haya saltos
+verificar al momento de crear el turno, si el horario no fue ocupado
