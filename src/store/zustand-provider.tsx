@@ -11,7 +11,7 @@ const StoreContext = createContext<Store | undefined>(undefined);
 interface StoreProviderProps {
     children: ReactNode;
     initialState?: {
-        selectedService?: string;
+        selectedService?: number;
         selectedDate?: Date;
         selectedTime?: string;
         name?: string;
