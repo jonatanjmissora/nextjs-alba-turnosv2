@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import DeleteBtn from "./DeleteBtn";
 import { useState } from "react";
-import { deleteTurnoAction } from "../_actions/turno-actions";
+import { useDeleteTurno } from "@/lib/turnos-query-mutation";
 
 export function AlertDialogComponent({
     children,
@@ -22,10 +22,11 @@ export function AlertDialogComponent({
     setSelected: (selected: boolean) => void;
 }) {
     const [open, setOpen] = useState(false);
+    const { mutateAsync: deleteTurno } = useDeleteTurno();
 
     const handleDelete = async () => {
         if (turnoId) {
-            await deleteTurnoAction(turnoId);
+            await deleteTurno(turnoId);
             setOpen(false);
             setSelected(false);
         } else return;

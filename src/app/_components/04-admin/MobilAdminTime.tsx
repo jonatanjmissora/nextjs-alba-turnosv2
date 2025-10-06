@@ -13,10 +13,9 @@ export const MobilAdminTime = ({
     selectedAdminDate: Date;
     turnos: TurnoType[];
 }) => {
-    const turnosByDate = turnos.filter(
+    const turnosDate = turnos.filter(
         (turno) =>
-            new Date(turno.fecha).toLocaleDateString() ===
-            selectedAdminDate.toLocaleDateString(),
+            turno.fecha === selectedAdminDate.toISOString().split("T")[0],
     );
 
     return (
@@ -25,7 +24,7 @@ export const MobilAdminTime = ({
                 <Turno
                     key={hora}
                     hora={hora}
-                    turno={turnosByDate.find((turno) => turno.hora === hora)}
+                    turno={turnosDate.find((turno) => turno.hora === hora)}
                 />
             ))}
         </article>

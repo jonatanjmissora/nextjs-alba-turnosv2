@@ -1,7 +1,6 @@
 "use server";
 
 import { supabase } from "@/db/server";
-import { revalidatePath } from "next/cache";
 import type { TurnoType } from "@/lib/types";
 
 export const getAllTurnosAction = async (): Promise<TurnoType[]> => {
@@ -71,7 +70,6 @@ export const deleteTurnoAction = async (id: number) => {
             throw new Error("Error deleting turno");
         }
         console.log("Turno deleted successfully:", res);
-        revalidatePath("/admin");
         return res;
     } catch (error) {
         console.error("Error deleting turno:", error);
