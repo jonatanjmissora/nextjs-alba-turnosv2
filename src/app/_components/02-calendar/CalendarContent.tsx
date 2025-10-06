@@ -9,7 +9,13 @@ import { useZStore } from "@/store/zustand-provider";
 import type { TurnoType } from "@/lib/types";
 import { getTimeRangeForSelecteDate } from "@/lib/utils";
 
-export const CalendarContent = ({ turnos }: { turnos: TurnoType[] }) => {
+export const CalendarContent = ({
+    turnos,
+    isFetching,
+}: {
+    turnos: TurnoType[];
+    isFetching: boolean;
+}) => {
     const selectedDate = useZStore((state) => state.selectedDate);
     const setSelectedDate = useZStore((state) => state.setSelectedDate);
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
@@ -50,7 +56,11 @@ export const CalendarContent = ({ turnos }: { turnos: TurnoType[] }) => {
             </div>
 
             {selectedDate && (
-                <TimeContainer turnos={turnos} selectedDate={selectedDate} />
+                <TimeContainer
+                    turnos={turnos}
+                    selectedDate={selectedDate}
+                    isFetching={isFetching}
+                />
             )}
         </article>
     );
@@ -59,9 +69,11 @@ export const CalendarContent = ({ turnos }: { turnos: TurnoType[] }) => {
 const TimeContainer = ({
     turnos,
     selectedDate,
+    isFetching,
 }: {
     turnos: TurnoType[];
     selectedDate: Date;
+    isFetching: boolean;
 }) => {
     const selectedTime = useZStore((state) => state.selectedTime);
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
@@ -74,6 +86,11 @@ const TimeContainer = ({
     return (
         <div className="flex flex-col sm:gap-2 2xl:gap-3 justify-center items-center w-full">
             <div className="w-full relative">
+                {isFetching && (
+                    <span className="text-xs text-[#444]/50 absolute right-4 top-0">
+                        cargando...
+                    </span>
+                )}
                 <h3 className="text-xs text-[#444] ">Selecciona hora</h3>
                 {selectedTime && (
                     <IconCheck
@@ -84,6 +101,7 @@ const TimeContainer = ({
                     />
                 )}
             </div>
+
             <div className="w-full grid grid-cols-4 sm:gap-2 2xl:gap-3 p-4 border border-[#444]/20 rounded-lg shadow bg-pink-100">
                 {selectedDatetimeRange.map((time) => (
                     <button

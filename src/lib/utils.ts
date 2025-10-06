@@ -93,9 +93,14 @@ export const getTimeRangeForSelecteDate = (
     turnos: TurnoType[],
 ): string[] => {
     const selectedDateTurnosTime = turnos
-        .filter(
-            (turno) => turno.fecha === selectedDate.toISOString().split("T")[0],
-        )
+        .filter((turno) => {
+            const turnoFecha = new Date(
+                `${turno.fecha}T00:00:00`,
+            ).toLocaleDateString();
+            const selectedFecha = selectedDate.toLocaleDateString();
+            return turnoFecha === selectedFecha;
+        })
         .map((turno) => turno.hora);
+
     return timeRange.filter((hora) => !selectedDateTurnosTime.includes(hora));
 };

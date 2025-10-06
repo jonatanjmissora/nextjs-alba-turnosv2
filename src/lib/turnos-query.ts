@@ -13,7 +13,9 @@ export const useTurnos = () => {
     } = useQuery({
         queryKey: ["turnos"],
         queryFn: getAllTurnosAction,
-        refetchOnWindowFocus: false,
+        refetchOnWindowFocus: true,
+        refetchOnMount: true,
+        refetchOnReconnect: true,
         refetchInterval: 15 * 1000,
     });
     return {

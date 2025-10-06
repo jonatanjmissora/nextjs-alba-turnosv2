@@ -9,13 +9,19 @@ import { useZStore } from "@/store/zustand-provider";
 import type { TurnoType } from "@/lib/types";
 import { getTimeRangeForSelecteDate } from "@/lib/utils";
 
-export const MobilCalendarContent = ({ turnos }: { turnos: TurnoType[] }) => {
+export const MobilCalendarContent = ({
+    turnos,
+    isFetching,
+}: {
+    turnos: TurnoType[];
+    isFetching: boolean;
+}) => {
     const selectedDate = useZStore((state) => state.selectedDate);
     const setSelectedDate = useZStore((state) => state.setSelectedDate);
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
 
     return (
-        <article className="flex-1 flex flex-col gap-12 items-center mt-8 mx-auto w-[90%]  min-h-[45vh]">
+        <article className="flex-1 flex flex-col gap-12 items-center mt-8 mx-auto w-[90%] min-h-[45vh]">
             <div className="flex flex-col gap-3 items-center w-full">
                 <div className="w-full relative">
                     <h3 className="text-xs text-[#444] ">Selecciona fecha</h3>
@@ -50,7 +56,11 @@ export const MobilCalendarContent = ({ turnos }: { turnos: TurnoType[] }) => {
             </div>
 
             {selectedDate && (
-                <TimeContainer turnos={turnos} selectedDate={selectedDate} />
+                <TimeContainer
+                    turnos={turnos}
+                    selectedDate={selectedDate}
+                    isFetching={isFetching}
+                />
             )}
         </article>
     );
@@ -59,9 +69,11 @@ export const MobilCalendarContent = ({ turnos }: { turnos: TurnoType[] }) => {
 const TimeContainer = ({
     turnos,
     selectedDate,
+    isFetching,
 }: {
     turnos: TurnoType[];
     selectedDate: Date;
+    isFetching: boolean;
 }) => {
     const selectedTime = useZStore((state) => state.selectedTime);
     const setSelectedTime = useZStore((state) => state.setSelectedTime);
@@ -74,6 +86,11 @@ const TimeContainer = ({
     return (
         <div className="flex flex-col gap-3 justify-center items-center w-full">
             <div className="w-full relative">
+                {isFetching && (
+                    <span className="text-xs text-[#444]/50 absolute right-4 top-0">
+                        cargando...
+                    </span>
+                )}
                 <h3 className="text-xs text-[#444] ">Selecciona hora</h3>
                 {selectedTime && (
                     <IconCheck
@@ -84,6 +101,7 @@ const TimeContainer = ({
                     />
                 )}
             </div>
+
             <div className="w-full grid grid-cols-4 gap-3 py-8 px-4 border border-[#444]/20 rounded-lg shadow bg-pink-100">
                 {selectedDatetimeRange.map((time) => (
                     <button

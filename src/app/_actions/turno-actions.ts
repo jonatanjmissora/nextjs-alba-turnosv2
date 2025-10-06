@@ -24,6 +24,7 @@ export const getAllTurnosAction = async (): Promise<TurnoType[]> => {
 };
 
 export const addTurnoAction = async (
+    id: number,
     service: number,
     date: string,
     time: string,
@@ -31,11 +32,6 @@ export const addTurnoAction = async (
     phone: string,
 ) => {
     try {
-        const id = Number(
-            date.substring(0, 10).replaceAll("-", "") +
-                time.substring(0, 5).replace(":", ""),
-        );
-
         const newTurno = {
             id: id,
             servicio: service,

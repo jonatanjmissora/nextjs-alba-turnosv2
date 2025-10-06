@@ -6,7 +6,7 @@ import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { MobilCalendarContent } from "../../_components/02-calendar/MobilCalendarContent";
 
 export default function MobilCalendarPage() {
-    const { turnos, error, isError, isLoading } = useTurnos();
+    const { turnos, error, isError, isLoading, isFetching } = useTurnos();
 
     return (
         <MobilLayout title="Selecciona fecha y hora">
@@ -15,7 +15,12 @@ export default function MobilCalendarPage() {
             ) : isError ? (
                 <ServicesError error={error} />
             ) : (
-                turnos && <MobilCalendarContent turnos={turnos} />
+                turnos && (
+                    <MobilCalendarContent
+                        turnos={turnos}
+                        isFetching={isFetching}
+                    />
+                )
             )}
         </MobilLayout>
     );
