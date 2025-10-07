@@ -22,11 +22,11 @@ export interface CategoryType {
 
 export type TurnoType = {
     id: number;
-    created_at: string;
+    created_at?: string;
     servicio: number;
     fecha: string;
     hora: string;
     nombre: string;
-    telefono: number;
-    servicios: ServiceType;
+    telefono: string;
+    servicios?: ServiceType;
 };

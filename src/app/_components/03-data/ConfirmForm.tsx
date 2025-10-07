@@ -6,6 +6,8 @@ import SubmitBtn from "./SubmitBtn";
 import { useRouter, usePathname } from "next/navigation";
 import { addTurnoAction } from "../../_actions/turno-actions";
 import { useTurnos } from "@/lib/turnos-query";
+import { schemaTurno } from "@/lib/schema-turno";
+import z from "zod";
 
 export default function ConfirmForm() {
     const selectedService = useZStore((state) => state.selectedService);
@@ -30,26 +32,41 @@ export default function ConfirmForm() {
             );
             //verifico si el turno ya esta ocupado
             const isTurnoOcupado = turnos.findIndex((turno) => turno.id === id);
-            console.log("isTurnoOcupado", isTurnoOcupado);
             if (isTurnoOcupado !== -1) {
                 setError("Turno ocupado");
                 return;
             }
 
-            const { error } = await addTurnoAction(
+            const newTurno = {
                 id,
-                selectedService,
-                date,
-                time,
-                name,
-                phone,
-            );
+                servicio: selectedService,
+                fecha: date,
+                hora: time,
+                nombre: name,
+                telefono: phone,
+            };
 
+            //valido schema
+            const { error: schemaError, success } =
+                schemaTurno.safeParse(newTurno);
+            if (!success) {
+                console.log(
+                    "ERRORES de validacion :",
+                    z.flattenError(schemaError).fieldErrors,
+                );
+                setError("⚠️validacion");
+                return;
+            }
+
+            //agrego el turno en base de datos
+            const { error } = await addTurnoAction(newTurno);
             if (error) {
                 console.error(error);
                 setError("Intente de nuevo");
                 return;
             }
+
+            //redirijo al /checkout si esta todo ok
             router.replace(
                 pathname === "/mobil/data" ? "/mobil/checkout" : "/checkout",
             );

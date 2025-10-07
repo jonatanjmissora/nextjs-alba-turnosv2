@@ -22,24 +22,8 @@ export const getAllTurnosAction = async (): Promise<TurnoType[]> => {
     }
 };
 
-export const addTurnoAction = async (
-    id: number,
-    service: number,
-    date: string,
-    time: string,
-    name: string,
-    phone: string,
-) => {
+export const addTurnoAction = async (newTurno: TurnoType) => {
     try {
-        const newTurno = {
-            id: id,
-            servicio: service,
-            fecha: date,
-            hora: time,
-            nombre: name,
-            telefono: phone,
-        };
-
         const res = await supabase
             .from("turnos_alba")
             .insert(newTurno)
