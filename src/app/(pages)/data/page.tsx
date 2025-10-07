@@ -107,8 +107,9 @@ const PhoneElement = () => {
     const [celular, setCelular] = useState<string>(phone || "");
 
     const handleChangePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value.length > 10) return;
         setCelular(e.target.value);
-        if (e.target.value.length > 8) {
+        if (e.target.value.length > 8 && e.target.value.length < 11) {
             setPhone(e.target.value);
         } else {
             setPhone(undefined);
@@ -128,7 +129,7 @@ const PhoneElement = () => {
                     value={celular}
                     onChange={handleChangePhone}
                 />
-                {phone && phone.length > 8 && (
+                {phone && phone.length > 8 && phone.length < 11 && (
                     <IconCheck
                         stroke={3}
                         size={40}
