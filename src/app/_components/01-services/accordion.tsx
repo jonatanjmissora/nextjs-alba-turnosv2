@@ -104,9 +104,15 @@ const ServiceCard = ({
             <p className="text-xs text-[#444]/70 text-balance p-1 text-left">
                 {category.description}
             </p>
-            <span className="w-full text-right text-xs text-[#444]/80">
+            <a
+                title="instagram"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://nextjs-alba.vercel.app/"
+                className="w-full text-right text-xs text-[#444]/80"
+            >
                 ...leer más
-            </span>
+            </a>
         </button>
     );
 };

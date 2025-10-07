@@ -36,6 +36,7 @@ export const CalendarContent = ({
                 </div>
                 <MiniCalendar
                     onValueChange={(date = new Date()) => {
+                        console.log("DATE =>", date);
                         setSelectedDate(date);
                         setSelectedTime(undefined);
                     }}

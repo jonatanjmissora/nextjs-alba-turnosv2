@@ -66,12 +66,28 @@ export type MiniCalendarProps = HTMLAttributes<HTMLDivElement> & {
     days?: number;
 };
 
+// Función para obtener la fecha actual en la zona horaria de Argentina
+const getCurrentDateInArgentina = () => {
+    // Obtener la fecha actual en la zona horaria local
+    const now = new Date();
+    // Crear una nueva fecha con los componentes de fecha/hora locales
+    // pero forzando que se interprete como UTC-3 (Argentina)
+    return new Date(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours() - 3, // Ajustar a UTC-3
+        now.getUTCMinutes(),
+        now.getUTCSeconds()
+    );
+};
+
 export const MiniCalendar = ({
     value,
     defaultValue,
     onValueChange,
     startDate,
-    defaultStartDate = new Date(),
+    defaultStartDate = getCurrentDateInArgentina(),
     onStartDateChange,
     days = 5,
     className,

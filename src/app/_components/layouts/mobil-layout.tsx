@@ -30,7 +30,7 @@ export default function MobilLayout({
 const ImageBGLayout = () => {
     return (
         <>
-            <div className="absolute top-4 right-4 rounded-full overflow-hidden shadow-[3px_3px_6px_0px_rgba(0,0,0,0.5)] size-[100px]">
+            <div className="absolute top-4 right-4 size-[100px] rounded-full logo-spark">
                 <Image
                     src="/logo.webp"
                     alt="services"

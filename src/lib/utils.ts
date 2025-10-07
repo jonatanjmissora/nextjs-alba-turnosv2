@@ -104,3 +104,17 @@ export const getTimeRangeForSelecteDate = (
 
     return timeRange.filter((hora) => !selectedDateTurnosTime.includes(hora));
 };
+
+export const getCurrentDateInArgentina = (date: Date = new Date()) => {
+    const dtf = new Intl.DateTimeFormat("es-AR", {
+        timeZone: "America/Argentina/Buenos_Aires",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+    });
+    return dtf.format(date);
+};
