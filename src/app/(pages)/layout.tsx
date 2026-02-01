@@ -33,7 +33,7 @@ export default function RootLayout({
                 suppressHydrationWarning
             >
                 <div
-                    className="absolute inset-0 z-[-10]"
+                    className="absolute inset-0 -z-10"
                     style={{
                         background: `linear-gradient(270deg, #FFECB3 0%, #FFE0B2 20%, #FFCDD2 40%, #F8BBD9 60%, #E1BEE7 80%, #D1C4E9 100%)`,
                     }}
@@ -41,7 +41,7 @@ export default function RootLayout({
 
                 <ZustandProvider>
                     <main className="w-screen flex-1 flex flex-col items-center justify-center">
-                        <div className="sm:w-2/3 2xl:w-1/2 sm:h-[525px] 2xl:h-[600px] flex flex-col justify-center items-center bg-gradient-to-b from-pink-100 via-[#FADBE0] to-[#ffc0cb] shadow-[6px_6px_10px_3px_rgba(0,0,0,0.15)] overflow-hidden">
+                        <div className="sm:w-2/3 2xl:w-1/2 sm:h-[525px] 2xl:h-[600px] flex flex-col justify-center items-center bg-linear-to-b from-pink-100 via-[#FADBE0] to-[#ffc0cb] shadow-[6px_6px_10px_3px_rgba(0,0,0,0.15)] overflow-hidden">
                             <TanstackProvider>
                                 <div className="w-full h-full flex">
                                     <Aside />

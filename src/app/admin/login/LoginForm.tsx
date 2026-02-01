@@ -28,6 +28,7 @@ export default function LoginForm({ redirectTo }: { redirectTo: string }) {
                 type="number"
                 name="password"
                 className="text-center shadow-[3px_3px_5px_0px_rgba(0,0,0,0.2)] w-1/2 p-2 border border-gray-300 rounded"
+                placeholder="dni"
             />
             <button
                 type="submit"
